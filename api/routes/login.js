@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../util/database');
 const jwt = require('jsonwebtoken');
 
-const con = require('../util/con');
+const con = require('../util/conn');
 const on_cus = con.import('../../models/online_cus');
 
 const Sequelize = require('sequelize');
