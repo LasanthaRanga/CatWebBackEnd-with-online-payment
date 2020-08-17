@@ -31,6 +31,14 @@ router.post('/pay', (req, res, nex) => {
         });
 });
 
+router.post('/responce', (req, res, nex) => {
+    console.log(req.body);
+    console.log('---------------------');
+    console.log(req.header);
+    console.log('---------------------');
+    res.send({ok: "Ela Kiri"});
+});
+
 
 
 module.exports = router;
