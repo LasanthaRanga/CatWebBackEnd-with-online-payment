@@ -1,0 +1,11 @@
+{
+    "env": {
+        "JWT_KEY": "secret",
+        "host": "localhost",
+        "user": "root",
+        "password": "root",      
+        "database": "angi",
+        "sendby": "88lasantha@gmail.com",
+        "sendbypass": "Lasa2012g"
+    }
+} 
