@@ -16,14 +16,8 @@ router.post('/pay', (req, res, nex) => {
         " VALUES ('" + param.cusid + "','" + param.appcat + "', '" + param.app + "', '" + datetime + "', " + param.amount + ", 0, '" + param.des + "', '" + param.o1 + "', '" + param.o2 + "')",
         (error, rows, fildData) => {
             if (!error) {
-                db.execute("select idOnPaid from online_pay where oncus_id='4' order by idOnPaid desc limit 1", (err, row, fildData) => {
-                    if (!err) {
-                        res.send(row);
-                    } else {
-                        console.log("error message");
-                        console.log(err);
-                    }
-                });
+                console.log(rows);
+                res.send(rows);
             } else {
                 console.log("error message");
                 console.log(error);
@@ -36,9 +30,17 @@ router.post('/responce', (req, res, nex) => {
     console.log('---------------------');
     console.log(req.header);
     console.log('---------------------');
-    res.send({ok: "Ela Kiri"});
+    res.send({ ok: "Ela Kiri" });
 });
 
+
+router.get('/get', (req, res, nex) => {
+    console.log(req.body);
+    console.log('---------------------');
+    console.log(req.header);
+    console.log('---------------------');
+    res.send({ ok: "Ela Kiri" });
+});
 
 
 module.exports = router;
