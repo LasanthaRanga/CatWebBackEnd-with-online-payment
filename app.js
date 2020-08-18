@@ -23,8 +23,34 @@ const onlinecustomer = require('./api/routes/online/customer');
 
 
 
+const allowedOrigins = [
+    '*',
+    'capacitor://localhost',
+    'ionic://localhost',
+    'http://localhost',
+    'http://localhost:4200',
+    'http://localhost:8080',
+    'http://localhost:8100',
+    'http://test.coopshop.lk',
+    'https://test.coopshop.lk',
+    'https://coopshop.lk',
+    'https://adv.codetechasia.com'
+  
+  ];
 
-
+  // Reflect the origin if it's in the allowed list or not defined (cURL, Postman, etc.)
+const corsOptions = {
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Origin not allowed by CORS'));
+      }
+    }
+  }
+  
+  // Enable preflight requests for all routes
+  app.options('*', cors(corsOptions));
 
 
 
@@ -34,32 +60,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-//     res.header(
-//         "Access-Control-Allow-Headers",
-//         "Origin, X-Requested-With, Content-Type, Accept, Authrization"
-//     );
-//     if (req.method === 'OPTIONS') {
-//         res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-//         return res.status(200).json({});
-//     }
-//     next();
-// })
 
-// app.use(function(req, res, next) {
-//     res.header({
-//         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8", 
-//         'Accept': 'application/json, text/plain',
-//         "cache-control": "no-cache", 
-//         "Access-Control-Allow-Origin": "*", 
-//         "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Accept, Authorization, X-Request-With, Access-Control-Request-Method, Access-Control-Request-Headers",
-//         "Access-Control-Allow-Credentials" : "true",
-//         "Access-Control-Allow-Methods" : "GET, POST, DELETE, PUT, OPTIONS, TRACE, PATCH, CONNECT",  
-//         });
-//     next();
-//   });
 
 app.use('/userlogin', userlogin);
 app.use('/privilage', privilage);

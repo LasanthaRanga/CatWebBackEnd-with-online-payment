@@ -6,7 +6,7 @@ const app = require('./app');
 const privateKey = fs.readFileSync('10858869_localhost.key');
 const publicKey = fs.readFileSync('10858869_localhost.cert');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 //const server = https.createServer({ key: privateKey, cert: publicKey }, app);
 const server = http.createServer(app);
