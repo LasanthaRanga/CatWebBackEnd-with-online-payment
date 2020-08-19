@@ -26,10 +26,17 @@ router.post('/pay', (req, res, nex) => {
 });
 
 router.post('/responce', (req, res, nex) => {
-    console.log(req.body);
-    console.log('---------------------');
-    console.log(req.header);
-    console.log('---------------------');
+    db.execute(
+        "UPDATE `online_pay` SET `status` = '1' WHERE	(`idOnPaid` = '"+req.body.onpayid+"');",
+        (error, rows, fildData) => {
+            if (!error) {
+                console.log(rows);
+                res.send(rows);
+            } else {
+                console.log("error message");
+                console.log(error);
+            }
+        });
     res.send({ ok: "Ela Kiri" });
 });
 

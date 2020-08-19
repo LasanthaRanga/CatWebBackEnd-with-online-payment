@@ -30,9 +30,10 @@ const allowedOrigins = [
     'http://localhost',
     'http://localhost:4200',
     'http://localhost:8080',
-    'http://localhost:8100',   
-    'https://kgmc.lk/',
-    'http://kgmc.lk/'
+    'http://localhost:8100',  
+    'http://kgmc.lk', 
+    'https://kgmc.lk'
+    
   
   ];
 
