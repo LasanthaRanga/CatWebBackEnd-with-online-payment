@@ -37,9 +37,7 @@ router.post('/responce', (req, res, nex) => {
                 console.log(error);
             }
         });
-    res.send({ ok: "Ela Kiri" });
 });
-
 
 router.get('/get', (req, res, nex) => {
     console.log(req.body);
@@ -48,6 +46,5 @@ router.get('/get', (req, res, nex) => {
     console.log('---------------------');
     res.send({ ok: "Ela Kiri" });
 });
-
 
 module.exports = router;

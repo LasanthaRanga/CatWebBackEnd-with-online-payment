@@ -24,32 +24,31 @@ const onlinecustomer = require('./api/routes/online/customer');
 
 
 const allowedOrigins = [
-    '*',
-    'capacitor://localhost',
-    'ionic://localhost',
-    'http://localhost',
-    'http://localhost:4200',
-    'http://localhost:8080',
-    'http://localhost:8100',  
-    'http://kgmc.lk', 
-    'https://kgmc.lk'
-    
-  
-  ];
+  '*',
+  'capacitor://localhost',
+  'ionic://localhost',
+  'http://localhost',
+  'http://localhost:4200',
+  'http://localhost:8080',
+  'http://localhost:8100',
+  'http://kgmc.lk',
+  'http://kgmc.lk:3001',
+  'https://kgmc.lk'
+];
 
-  // Reflect the origin if it's in the allowed list or not defined (cURL, Postman, etc.)
+// Reflect the origin if it's in the allowed list or not defined (cURL, Postman, etc.)
 const corsOptions = {
-    origin: (origin, callback) => {
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Origin not allowed by CORS'));
-      }
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origin not allowed by CORS'));
     }
   }
-  
-  // Enable preflight requests for all routes
-  app.options('*', cors(corsOptions));
+}
+
+// Enable preflight requests for all routes
+app.options('*', cors(corsOptions));
 
 
 
@@ -80,19 +79,19 @@ app.use('/onpay', onpay);
 
 
 app.use((req, res, next) => {
-    const error = new Error('Not Found ela kiri');
-    error.status = 404;
-    console.log(error.message);
-    next(error);
+  const error = new Error('Not Found ela kiri');
+  error.status = 404;
+  console.log(error.message);
+  next(error);
 });
 
 app.use((error, req, res, next) => {
-    res.status(error.status || 500);
-    res.json({
-        error: {
-            message: error.message
-        }
-    })
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message
+    }
+  })
 });
 
 module.exports = app;
