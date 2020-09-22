@@ -8,6 +8,7 @@ const Op = Sequelize.Op;
 const http = require('http');
 var nodemailer = require('nodemailer');
 const htmls = require('./htmledit');
+const mail = require('../../middleware/email');
 
 router.post('/pay', (req, res, nex) => {
     const param = { cusid: req.body.cusid, appcat: req.body.appcat, app: req.body.app, amount: req.body.amount, des: req.body.des, o1: req.body.o1, o2: req.body.o2 }
@@ -40,7 +41,7 @@ router.post('/responce', (req, res, nex) => {
                             htmls.re2 + "<h1> Hi "+data.fullname+"<h1>" +
                             htmls.re3 + "<h3>Online Payment ID : "+data.idOnPaid+"</h3> " +
                             htmls.re4 + data.date +
-                            htmls.re5 + data.ward_name + " - " + data.street_name+" - " + assessment_no +
+                            htmls.re5 + data.ward_name + " - " + data.street_name+" - " + data.assessment_no +
                             htmls.re6 + "Rs. " + data.amount+
                             htmls.re7 + "Rs. " + data.amount+
                             htmls.re8;
@@ -48,7 +49,7 @@ router.post('/responce', (req, res, nex) => {
                 
                         var param = {
                             html: content,
-                            to: 'jagathsun@gmail.com',
+                            to: data.email,
                             subject: 'Payment Recipt',
                             text: 'Text message',
                         };
