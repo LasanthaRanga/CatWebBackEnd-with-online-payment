@@ -7,20 +7,20 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const http = require('http');
 var nodemailer = require('nodemailer');
+const mail = require('../../middleware/email');
 
 
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // use SSL
-    auth: {
-        user: '88lasantha@gmail.com',
-        pass: 'Lasa2012g'
-    }
-});
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+// var transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     host: 'smtp.gmail.com',
+//     port: 587,
+//     secure: false, // use SSL
+//     auth: {
+//         user: '88lasantha@gmail.com',
+//         pass: 'Lasa2012g'
+//     }
+// });
 
 const message = "Registration Success in MC Kurunegala. Youre Verification code is : ";
 
@@ -65,21 +65,29 @@ router.post('/', (req, responce, nex) => {
 
             var val = Math.floor(1000 + Math.random() * 9000);
 
-            transporter.sendMail(
-                {
-                    from: '88lasantha@gmail.com',
-                    to: cus.email,
-                    subject: 'MC Kurunegala',
-                    text: message + val
-                }
-                , function (error, info) {
-                    if (error) {
-                        console.log(error);
-                    } else {
-                        console.log('Email sent: ' + info.response);
-                    }
-                }
-            );
+            // transporter.sendMail(
+            //     {
+            //         from: '88lasantha@gmail.com',
+            //         to: cus.email,
+            //         subject: 'MC Kurunegala',
+            //         text: message + val
+            //     }
+            //     , function (error, info) {
+            //         if (error) {
+            //             console.log(error);
+            //         } else {
+            //             console.log('Email sent: ' + info.response);
+            //         }
+            //     }
+            // );
+
+            var param = {                
+                to: cus.email,
+                subject: 'Verification Code',
+                message: message + val,
+            };
+            mail.emailSend(param);
+         
 
             message.replace(" ", "+");
 
