@@ -20,20 +20,22 @@ const assess_data = require('./api/routes/assess_data');
 const onlinecuspro = require('./api/routes/online/map');
 const onpay = require('./api/routes/online/pay');
 const onlinecustomer = require('./api/routes/online/customer');
+const vehicleRoute = require('./api/routes/vehicleRouters');
 
 
 
-const allowedOrigins = [
-  '*',
+const allowedOrigins = [  
   'capacitor://localhost',
   'ionic://localhost',
   'http://localhost',
   'http://localhost:4200',
+  'http://192.168.8.103:4200',
   'http://localhost:8080',
   'http://localhost:8100',
   'http://kgmc.lk',
   'http://kgmc.lk:3001',
-  'https://kgmc.lk'
+  'https://kgmc.lk',
+  '*',
 ];
 
 // Reflect the origin if it's in the allowed list or not defined (cURL, Postman, etc.)
@@ -74,7 +76,7 @@ app.use('/onlinecuspro', onlinecuspro);
 app.use('/login', login);
 app.use('/assess_data', assess_data);
 app.use('/onpay', onpay);
-
+app.use('/vehicle', vehicleRoute);
 
 
 
