@@ -62,21 +62,21 @@ app.use(bodyParser.json());
 
 
 
-app.use('/userlogin', userlogin);
-app.use('/privilage', privilage);
-app.use('/jobtypes', jobtypes);
-app.use('/subjects', subjects);
-app.use('/department', department);
-app.use('/jobs', jobs);
-app.use('/sendto', sendto);
-app.use('/attach', attach)
-app.use('/unique', unique);
-app.use('/onlinecustomer', onlinecustomer);
-app.use('/onlinecuspro', onlinecuspro);
-app.use('/login', login);
-app.use('/assess_data', assess_data);
-app.use('/onpay', onpay);
-app.use('/vehicle', vehicleRoute);
+app.use('/online/userlogin', userlogin);
+app.use('/online/privilage', privilage);
+app.use('/online/jobtypes', jobtypes);
+app.use('/online/subjects', subjects);
+app.use('/online/department', department);
+app.use('/online/jobs', jobs);
+app.use('/online/sendto', sendto);
+app.use('/online/attach', attach)
+app.use('/online/unique', unique);
+app.use('/online/onlinecustomer', onlinecustomer);
+app.use('/online/onlinecuspro', onlinecuspro);
+app.use('/online/login', login);
+app.use('/online/assess_data', assess_data);
+app.use('/online/onpay', onpay);
+app.use('/online/vehicle', vehicleRoute);
 
 
 

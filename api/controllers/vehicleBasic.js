@@ -440,3 +440,17 @@ exports.getTayer = (req, res, next) => {
     }
 }
 
+exports.getNumber = (req, res, next) => {
+    try {
+        db.execute("SELECT v_provincecode.V_provincecode,v_basicinfo.vbf_regno1 FROM v_basicinfo INNER JOIN v_provincecode ON v_basicinfo.V_provincecode_idV_provincecode=v_provincecode.idV_provincecode WHERE v_basicinfo.idV_Basicinfo=" + req.body.id, (error, rows, fildData) => {
+            if (!error) {
+                res.send(rows);
+            } else {
+                console.log(error);
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+}

@@ -1,15 +1,84 @@
 var express = require('express');
 var router = express.Router();
+const db = require('../util/vehicleDB');
+var appRoot = require('app-root-path');
+var dateFormat = require('dateformat');
 const vehicleBasic = require('../controllers/vehicleBasic');
 const comboData = require('../controllers/comboData');
-/* GET home page. */
+const tools = require('../controllers/vehicleTools');
+const fuelC = require('../controllers/vehicleFuelC');
 
+
+//file upload
+let path = '';
+
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/vehicle/');
+    },
+    filename: function (req, file, cb) {
+        let date = dateFormat(new Date(), 'yyyyMMddHHmmss_', 'en-US', '+0530');
+       // console.log(date + " ===================== ");
+        path = date + file.originalname;
+       // console.log(path + "  ++++++++++++++++++");
+        cb(null, path);
+    }
+});
+const upload = multer({ storage: storage });
+
+router.post('/upload', upload.single('attach'), (req, res, nex) => {
+    console.log("awa");
+    console.log(req.file);
+    console.log(req.body.type);
+    const body = { basicID: req.body.basicID }
+    console.log(body);
+    console.log(path);
+
+    db.execute("INSERT INTO `v_images`(`V_images_path`, `V_images_status`, `V_Basicinfo_idV_Basicinfo`) VALUES ('" + path+ "', '1', " + body.basicID + ")",
+        (error, rows, fildData) => {
+            if (!error) {
+                console.log(path);
+                res.send({ mg: 'Ok', status: 1 });
+            } else {
+                console.log("error message");
+                console.log(error.message);
+            }
+        });
+    // res.send({ ok: "Ela Ban OK" });
+});
+
+
+router.get('/img/:path', (req, res, nex) => {
+    var path = req.params.path;
+    console.log(appRoot);
+    res.sendFile(appRoot + '/uploads/vehicle/' + path);
+});
+
+router.get('/image/:id', (req, res, nex) => {
+    var id = req.params.id;
+    db.execute("SELECT v_images.V_images_path,v_images.idV_images FROM v_images WHERE v_images.V_Basicinfo_idV_Basicinfo =" + id,
+        (error, rows, next) => {
+            if (!error) {
+                res.send(rows);
+            } else {
+                console.log("error message");
+                console.log(error.message);
+            }
+        });
+});
+
+
+
+
+//routers
 router.post("/getAllVehicles", vehicleBasic.getAllVehicles);
 router.post("/getAllVehicleById", vehicleBasic.getAllVehicleById);
 
 router.post("/saveBasic", vehicleBasic.saveBasic);
 router.post("/updateBasic", vehicleBasic.updateBasic);
 router.post("/getBasic", vehicleBasic.getBasic);
+router.post("/getNumber", vehicleBasic.getNumber);
 
 router.post("/saveOil", vehicleBasic.saveOil);
 router.post("/getOil", vehicleBasic.getOil);
@@ -41,6 +110,17 @@ router.post("/getInsuranceType", comboData.getInsuranceType);
 router.post("/getInsurenceCompany", comboData.getInsurenceCompany);
 router.post("/getOilTypes", comboData.getOilTypes); 
 router.post("/getOilNameByType", comboData.getOilNameByType); // (id)
+
+//toosl 
+router.post("/saveTools", tools.saveTools);
+router.post("/getTools", tools.getTools);
+router.post("/deactiveTools", tools.deactiveTools);
+
+//fuelC
+router.post("/saveFuelc", fuelC.saveFuelc);
+router.post("/getFuelc", fuelC.getFuelc);
+router.post("/deactiveFuelc", fuelC.deactiveFuelc);
+
 
 
 module.exports = router;
