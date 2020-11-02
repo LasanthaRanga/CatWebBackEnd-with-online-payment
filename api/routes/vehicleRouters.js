@@ -7,6 +7,8 @@ const vehicleBasic = require('../controllers/vehicleBasic');
 const comboData = require('../controllers/comboData');
 const tools = require('../controllers/vehicleTools');
 const fuelC = require('../controllers/vehicleFuelC');
+const license = require('../controllers/vehicleLicense');
+const tyre = require('../controllers/vehicleTyre');
 
 
 //file upload
@@ -19,9 +21,9 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         let date = dateFormat(new Date(), 'yyyyMMddHHmmss_', 'en-US', '+0530');
-       // console.log(date + " ===================== ");
+        // console.log(date + " ===================== ");
         path = date + file.originalname;
-       // console.log(path + "  ++++++++++++++++++");
+        // console.log(path + "  ++++++++++++++++++");
         cb(null, path);
     }
 });
@@ -35,7 +37,7 @@ router.post('/upload', upload.single('attach'), (req, res, nex) => {
     console.log(body);
     console.log(path);
 
-    db.execute("INSERT INTO `v_images`(`V_images_path`, `V_images_status`, `V_Basicinfo_idV_Basicinfo`) VALUES ('" + path+ "', '1', " + body.basicID + ")",
+    db.execute("INSERT INTO `v_images`(`V_images_path`, `V_images_status`, `V_Basicinfo_idV_Basicinfo`) VALUES ('" + path + "', '1', " + body.basicID + ")",
         (error, rows, fildData) => {
             if (!error) {
                 console.log(path);
@@ -95,7 +97,7 @@ router.post("/saveTayer", vehicleBasic.saveTayer);
 router.post("/getTayer", vehicleBasic.getTayer);
 
 
- 
+
 // ================ combo load
 router.post("/getColors", comboData.getColors);
 router.post("/getCondition", comboData.getCondition);
@@ -108,7 +110,7 @@ router.post("/getTransmition", comboData.getTransmition);
 router.post("/getTypes", comboData.getTypes);
 router.post("/getInsuranceType", comboData.getInsuranceType);
 router.post("/getInsurenceCompany", comboData.getInsurenceCompany);
-router.post("/getOilTypes", comboData.getOilTypes); 
+router.post("/getOilTypes", comboData.getOilTypes);
 router.post("/getOilNameByType", comboData.getOilNameByType); // (id)
 
 //toosl 
@@ -121,6 +123,19 @@ router.post("/saveFuelc", fuelC.saveFuelc);
 router.post("/getFuelc", fuelC.getFuelc);
 router.post("/deactiveFuelc", fuelC.deactiveFuelc);
 
+//license
+router.post("/getLicenseTypes", license.getLicenseTypes);
+router.post("/getLicenseAuthority", license.getLicenseAuthority);
+router.post("/saveLicense", license.saveLicense);
+router.post("/getLicens", license.getLicens);
+router.post("/deactiveLicense", license.deactiveLicense);
 
+
+// tayer 
+router.post("/getTyreSize", tyre.getTyreSize);
+router.post("/getWheel", tyre.getWheel);
+router.post("/getTyres", tyre.getTyres);
+router.post("/saveTyre", tyre.saveTyre);
+router.post("/deactiveTyre", tyre.deactiveTyre);
 
 module.exports = router;
