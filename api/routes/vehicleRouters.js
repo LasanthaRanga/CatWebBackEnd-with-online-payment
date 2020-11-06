@@ -9,6 +9,8 @@ const tools = require('../controllers/vehicleTools');
 const fuelC = require('../controllers/vehicleFuelC');
 const license = require('../controllers/vehicleLicense');
 const tyre = require('../controllers/vehicleTyre');
+const replace = require('../controllers/vehicleReplace');
+const driver = require('../controllers/vehicleDriver');
 
 
 //file upload
@@ -137,5 +139,20 @@ router.post("/getWheel", tyre.getWheel);
 router.post("/getTyres", tyre.getTyres);
 router.post("/saveTyre", tyre.saveTyre);
 router.post("/deactiveTyre", tyre.deactiveTyre);
+
+
+//Replace
+router.post("/getReplace", replace.getReplace);
+router.post("/getParts", replace.getParts);
+router.post("/saveReplace", replace.saveReplace);
+router.post("/deactiveReplace", replace.deactiveReplace);
+
+
+//Driver
+router.post("/getDrivers", driver.getDrivers);
+router.post("/saveDriver", driver.saveDriver);
+router.post("/getVehicleDriver", driver.getVehicleDriver);
+router.post("/deactiveDriver", driver.deactiveDriver);
+
 
 module.exports = router;
