@@ -21,7 +21,7 @@ const onlinecuspro = require('./api/routes/online/map');
 const onpay = require('./api/routes/online/pay');
 const onlinecustomer = require('./api/routes/online/customer');
 const vehicleRoute = require('./api/routes/vehicleRouters');
-
+const adminRoute=require('./api/routes/admin_panel/mixBillRouters');
 
 
 const allowedOrigins = [  
@@ -77,7 +77,7 @@ app.use('/online/login', login);
 app.use('/online/assess_data', assess_data);
 app.use('/online/onpay', onpay);
 app.use('/online/vehicle', vehicleRoute);
-
+app.use('/online/admin',adminRoute);
 
 
 app.use((req, res, next) => {
