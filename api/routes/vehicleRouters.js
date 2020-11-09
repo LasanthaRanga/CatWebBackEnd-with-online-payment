@@ -11,6 +11,7 @@ const license = require('../controllers/vehicleLicense');
 const tyre = require('../controllers/vehicleTyre');
 const replace = require('../controllers/vehicleReplace');
 const driver = require('../controllers/vehicleDriver');
+const service = require('../controllers/vehicleService');
 
 
 //file upload
@@ -153,6 +154,12 @@ router.post("/getDrivers", driver.getDrivers);
 router.post("/saveDriver", driver.saveDriver);
 router.post("/getVehicleDriver", driver.getVehicleDriver);
 router.post("/deactiveDriver", driver.deactiveDriver);
+
+//Service
+router.post("/getServiceTypes", service.getServiceTypes);
+router.post("/saveService", service.saveService);
+router.post("/getServices", service.getServices);
+router.post("/getServiceOils", service.getServiceOils);
 
 
 module.exports = router;
