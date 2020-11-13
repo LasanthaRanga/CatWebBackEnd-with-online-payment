@@ -44,7 +44,7 @@ router.post('/remove', (req, res, nex) => {
 
 router.post('/', (req, res, nex) => {
     const body = { id: req.body.id }
-    db.execute("SELECT 	id,	routerLink,	caption,	image,	STATUS,	approval_cat.idApproval_cat,	user_has_approval_cat.User_idUser FROM	approval_cat	INNER JOIN web_priv_has_approve_cat ON web_priv_has_approve_cat.approve_cat_id = approval_cat.idApproval_cat	INNER JOIN web_privilages ON web_priv_has_approve_cat.web_priv_id = id	INNER JOIN user_has_approval_cat ON user_has_approval_cat.Approval_cat_idApproval_cat = approval_cat.idApproval_cat WHERE	user_has_approval_cat.User_idUser =" + body.id,
+    db.execute("SELECT web_privilages.id,web_privilages.routerLink,web_privilages.caption,web_privilages.image,web_privilages.`status`,approval_cat.idApproval_cat,user_has_approval_cat.User_idUser,web_privilages.type,web_privilages.sub FROM approval_cat INNER JOIN web_priv_has_approve_cat ON web_priv_has_approve_cat.approve_cat_id=approval_cat.idApproval_cat INNER JOIN web_privilages ON web_priv_has_approve_cat.web_priv_id=id INNER JOIN user_has_approval_cat ON user_has_approval_cat.Approval_cat_idApproval_cat=approval_cat.idApproval_cat WHERE user_has_approval_cat.User_idUser=" + body.id,
         (error, rows, fildData) => {
             if (!error) {
                 res.status(200);
@@ -55,6 +55,21 @@ router.post('/', (req, res, nex) => {
             }
         });
 });
+
+router.post('/sub', (req, res, nex) => {
+    const body = { id: req.body.id, main: req.body.main };
+    db.execute("SELECT web_privilages.id,web_privilages.routerLink,web_privilages.caption,web_privilages.image,web_privilages.`status`,web_privilages.type,web_privilages.sub,web_privilages.parent FROM web_privilages WHERE web_privilages.parent= " + body.main,
+        (error, rows, fildData) => {
+            if (!error) {
+                res.status(200);
+                res.send(rows);
+            } else {
+                console.log("error message");
+                console.log(error.message);
+            }
+        });
+});
+
 
 
 router.get('/aprovalcat', (req, res, nex) => {
@@ -86,7 +101,7 @@ router.get('/privilages', (req, res, nex) => {
 
 router.get('/apcathas/:id', (req, res, nex) => {
     let id = req.params.id;
-    db.execute("SELECT web_privilages.id, web_privilages.caption, web_privilages.image FROM web_priv_has_approve_cat INNER JOIN web_privilages ON web_priv_has_approve_cat.web_priv_id = web_privilages.id INNER JOIN approval_cat ON web_priv_has_approve_cat.approve_cat_id = approval_cat.idApproval_cat WHERE approval_cat.idApproval_cat =" + id,
+    db.execute("SELECT web_privilages.id,web_privilages.caption,web_privilages.image,web_privilages.routerLink,web_privilages.`status`,web_privilages.type,web_privilages.sub FROM web_priv_has_approve_cat INNER JOIN web_privilages ON web_priv_has_approve_cat.web_priv_id=web_privilages.id INNER JOIN approval_cat ON web_priv_has_approve_cat.approve_cat_id=approval_cat.idApproval_cat WHERE approval_cat.idApproval_cat=" + id,
         (error, rows, fildData) => {
             if (!error) {
                 res.status(200);
