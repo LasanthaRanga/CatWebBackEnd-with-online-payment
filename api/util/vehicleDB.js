@@ -10,6 +10,7 @@ const pool = mysql.createPool({
     user: 'root',
     password: '@Mck_#321',
     database: 'vehicle_test'
+    
 });
 
 module.exports = pool.promise();

@@ -20,6 +20,14 @@ router.post('/rate', (req, res, next) => {
     });
 });
 
+router.post('/disabled', (req, res, next) => {
+    db.execute("SELECT online_disable.block_dateTime,online_disable.reson FROM online_disable WHERE online_disable.`status`=0 AND online_disable.app_cat= " + req.body.cat + "", (er, ro, fi) => {
+        if (!er) {
+            res.send(ro);
+        }
+    });
+});
+
 
 router.post('/pay', (req, res, nex) => {
     const param = { cusid: req.body.cusid, appcat: req.body.appcat, app: req.body.app, amount: req.body.amount, des: req.body.des, o1: req.body.o1, o2: req.body.o2, total: req.body.fullPay, rate: req.body.onValue }
