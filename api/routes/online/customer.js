@@ -81,27 +81,22 @@ router.post('/', (req, responce, nex) => {
             //     }
             // );
 
-            var param = {                
+            var param = {
                 to: cus.email,
                 subject: 'Verification Code',
                 message: message + val,
+                mob: cus.mobile,
             };
             mail.emailSend(param);
-         
 
             message.replace(" ", "+");
+            var smsParam = {
+                message: message + val,
+                mob: cus.mobile,
+            };
+            mail.smsSend(smsParam);
 
-            // http.get("http://www.textit.biz/sendmsg/index.php?id=94767365725&password=1548&text=" + message + val + "&to=" + cus.mobile + "&from=MC.Kurunegala"
-            //     , function (err, res, body) {
-            //         if (err) {
-            //             console.log("eroor on");
-            //             console.log(err);
-            //         } else {
-            //             console.log("Else");
-            //             console.log(res);
-            //         }
-            //     }
-            // );
+
 
             let customer = {
                 fullname: cus.fullname,
@@ -113,7 +108,9 @@ router.post('/', (req, responce, nex) => {
                 code: val
             }
             const online = on_cus.build(customer);
+
             online.save();
+
             responce.status(200).send({ mg: "Registration Success", status: 1, email: cus.email, mobile: cus.mobile });
         }
     });
@@ -130,12 +127,6 @@ router.get('/', (req, res, nex) => {
             }
         });
 });
-
-
-
-
-
-
 
 
 

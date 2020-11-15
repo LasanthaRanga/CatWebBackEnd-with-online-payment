@@ -1,5 +1,6 @@
 var nodemailer = require('nodemailer');
 const http = require('http');
+const db = require('../util/database');
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -40,7 +41,7 @@ exports.emailSend = (param) => {
 
 
 
-       // console.log(param);
+        // console.log(param);
         transporter.sendMail(
             mailOptions
             , function (error, info) {
@@ -64,41 +65,56 @@ exports.emailSend = (param) => {
 
 
 exports.smsSend = (param) => {
+    var id = '';
+    var pword = '';
+    var link = '';
 
-    console.log("sms send call");
+    db.execute('SELECT sms_getting_setting.sms_setting_id,sms_getting_setting.sms_gatway_id,sms_getting_setting.sms_gatway_pwd,sms_getting_setting.sms_gatway_link FROM sms_getting_setting', (er, ro, fd) => {
+        if (!er) {
+            id = ro[0].sms_gatway_id;
+            pword = ro[0].sms_gatway_pwd;
+            link = ro[0].sms_gatway_link;
 
-    console.log(param);
+            console.log("sms send call");
 
-    let message = param.message;
-    let val = "0000";
-    let mobile = param.mob;
-    let uname = 'SLWDSCSAPI';
-    let pword = 'SLWDSCSAPI';
+            console.log(param);
 
-    // http.get("http://www.textit.biz/sendmsg/index.php?id=94767365725&password=1548&text=" + message + val + "&to=" + mobile + "&from=MC.Kurunegala"
-    //     , function (err, res, body) {
-    //         if (err) {
-    //             console.log("eroor on");
-    //             console.log(err);
-    //         } else {
-    //             console.log("Else");
-    //             console.log(res);
-    //         }
-    //     }
-    // );
+            let message = param.message;         
+            let mobile = param.mob;
+     
 
-  
+            http.get("" + link + "id=" + id + "&password=" + pword + "&text=" + message + "&to=" + mobile + "&from=MC.Kurunegala"
+                , function (err, res, body) {
+                    if (err) {
+                        console.log("eroor on");
+                        console.log(err);
+                    } else {
+                        console.log("Else");
+                        console.log(res);
+                    }
+                }
+            );
 
-    http.get(request, function (err, res, body) {
-        if (err) {
-            console.log("sending error ====>");
-          //  console.log(err);
-        } else {
-            // console.log("Else");
-          //  console.log(res);
-            console.log("sent ====>");
         }
+    });
 
-    }
-    );
+
+
+
+
+
+
+
+    // http.get(request, function (err, res, body) {
+    //     if (err) {
+    //         console.log("sending error ====>");
+    //         //  console.log(err);
+    //     } else {
+    //         // console.log("Else");
+    //         //  console.log(res);
+    //         console.log("sent ====>");
+    //     }
+
+    // }
+    // );
 }
