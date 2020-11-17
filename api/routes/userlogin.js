@@ -4,6 +4,20 @@ const db = require('../util/database');
 const jwt = require('jsonwebtoken');
 
 
+
+router.post('/keyval', (req, res, next) => {
+    db.execute("SELECT fxkeyvalue.id,fxkeyvalue.`key`,fxkeyvalue.`value`,fxkeyvalue.commnet FROM fxkeyvalue WHERE fxkeyvalue.`key`='" + req.body.key + "'",
+        (error, rows, fildData) => {
+            if (!error) {
+                res.send(rows);
+            } else {
+                console.log("error message");
+                console.log(error.message);
+            }
+        });
+});
+
+
 router.get('/getSubjectsByUid/:uid', (req, res, next) => {
     db.execute("SELECT user_has_subject.user_id, `subject`.idSubject, `subject`.subject_name, `subject`.subject_code FROM user_has_subject \
     INNER JOIN `subject` ON `subject`.idSubject = user_has_subject.subject_id WHERE user_id ="+ req.params.uid,
@@ -110,7 +124,7 @@ router.get('users/', (req, res, next) => {
         "LEFT JOIN `subject` ON `subject`.idSubject = user_has_subject.subject_id\n" +
         "WHERE\n" +
         "\t`user`.user_status = 1\n",
-        
+
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
