@@ -21,10 +21,10 @@ const onlinecuspro = require('./api/routes/online/map');
 const onpay = require('./api/routes/online/pay');
 const onlinecustomer = require('./api/routes/online/customer');
 const vehicleRoute = require('./api/routes/vehicleRouters');
-const adminRoute=require('./api/routes/admin_panel/mixBillRouters');
+const adminRoute = require('./api/routes/admin_panel/mixBillRouters');
 
 
-const allowedOrigins = [  
+const allowedOrigins = [
   'capacitor://localhost',
   'ionic://localhost',
   'http://localhost',
@@ -60,24 +60,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
+const urlPrifix = '/ibbagamuwa/online/';
 
 
-app.use('/online/userlogin', userlogin);
-app.use('/online/privilage', privilage);
-app.use('/online/jobtypes', jobtypes);
-app.use('/online/subjects', subjects);
-app.use('/online/department', department);
-app.use('/online/jobs', jobs);
-app.use('/online/sendto', sendto);
-app.use('/online/attach', attach)
-app.use('/online/unique', unique);
-app.use('/online/onlinecustomer', onlinecustomer);
-app.use('/online/onlinecuspro', onlinecuspro);
-app.use('/online/login', login);
-app.use('/online/assess_data', assess_data);
-app.use('/online/onpay', onpay);
-app.use('/online/vehicle', vehicleRoute);
-app.use('/online/admin',adminRoute);
+app.use(urlPrifix + 'userlogin', userlogin);
+app.use(urlPrifix + 'privilage', privilage);
+app.use(urlPrifix + 'jobtypes', jobtypes);
+app.use(urlPrifix + 'subjects', subjects);
+app.use(urlPrifix + 'department', department);
+app.use(urlPrifix + 'jobs', jobs);
+app.use(urlPrifix + 'sendto', sendto);
+app.use(urlPrifix + 'attach', attach)
+app.use(urlPrifix + 'unique', unique);
+app.use(urlPrifix + 'onlinecustomer', onlinecustomer);
+app.use(urlPrifix + 'onlinecuspro', onlinecuspro);
+app.use(urlPrifix + 'login', login);
+app.use(urlPrifix + 'assess_data', assess_data);
+app.use(urlPrifix + 'onpay', onpay);
+app.use(urlPrifix + 'vehicle', vehicleRoute);
+app.use(urlPrifix + 'admin', adminRoute);
 
 
 app.use((req, res, next) => {

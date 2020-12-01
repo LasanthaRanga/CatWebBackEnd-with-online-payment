@@ -48,7 +48,7 @@ router.post('/pay', (req, res, nex) => {
 router.post('/responce', (req, res, nex) => {
     console.log(req.body);
     db.execute(
-        "UPDATE `online_pay` SET `status` = '1' WHERE	(`idOnPaid` = '" + req.body.onpayid + "');",
+        "UPDATE `online_pay` SET `status` = '1', ref = '" + req.body.orderID + "' WHERE	(`idOnPaid` = '" + req.body.onpayid + "');",
         (error, rows, fildData) => {
             if (!error) {
                 console.log(rows);
