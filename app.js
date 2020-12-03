@@ -62,7 +62,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-const urlPrifix = '/ibbagamuwa/online/';
+const urlPrifix = '/online/';
 
 
 app.use(urlPrifix + 'userlogin', userlogin);
