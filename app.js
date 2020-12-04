@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./api/util/database');
 const jwt = require('jsonwebtoken');
+const message = require('./api/middleware/email');
 
 const userlogin = require('./api/routes/userlogin');
 const privilage = require('./api/routes/privilage');
@@ -82,6 +83,11 @@ app.use(urlPrifix + 'onpay', onpay);
 app.use(urlPrifix + 'vehicle', vehicleRoute);
 app.use(urlPrifix + 'admin', adminRoute);
 
+
+// app.use('/sms', (req, res, next) => {
+//   message.mobitelSmsSend({ to: '0702517628', mg: 'test parameeter' });
+//   res.send({ ok: 'ok' });
+// });
 
 app.use((req, res, next) => {
   const error = new Error('Not Found ela kiri');

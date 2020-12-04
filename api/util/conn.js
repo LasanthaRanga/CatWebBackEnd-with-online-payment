@@ -2,9 +2,9 @@ const Sequelize = require('sequelize');
 
 // const sequelize = new Sequelize(process.env.database, process.env.user, process.env.password, {
 
-// const sequelize = new Sequelize('atd', 'root', 'root', {
+const sequelize = new Sequelize('atd', 'root', 'root', {
 // const sequelize = new Sequelize('ultimate2', 'root', 'CHI@#321#', {  // Chilaw
-const sequelize = new Sequelize('ultimate2', 'root', 'KULIUC@#321#', {  //MCK
+// const sequelize = new Sequelize('ultimate2', 'root', 'KULIUC@#321#', {  //MCK
     dialect: 'mysql',
     host: 'localhost',
     port: 3306,

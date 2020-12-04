@@ -10,14 +10,14 @@ const pool = mysql.createPool({
     port: 3306,
     user: 'root',
 
-    // password: 'root',
-    // database: 'atd'
+    password: 'root',
+    database: 'atd'
 
     // password: 'CHI@#321#',
     // database: 'ultimate2'
 
-    password: 'KULIUC@#321#',
-    database: 'ibbagamuwaps'
+    // password: 'KULIUC@#321#',
+    // database: 'ibbagamuwaps'
 
 });
 

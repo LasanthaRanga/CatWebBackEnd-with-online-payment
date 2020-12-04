@@ -1,6 +1,7 @@
 var nodemailer = require('nodemailer');
 const http = require('http');
 const db = require('../util/database');
+const axios = require('axios')
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -62,6 +63,28 @@ exports.emailSend = (param) => {
 }
 
 
+exports.mobitelSmsSend = (parm) => {
+   
+    let send = {
+        username: "esmsusr_1scv",
+        password: "sre2ag",
+        from: "MC KUR",
+        to: parm.to,
+        text: parm.mg,
+        mesageType: 1
+    }
+
+    axios.post('http://smeapps.mobitel.lk:8585/EnterpriseSMSV3/esmsproxyURL.php', send)
+        .then(res => {
+            console.log(`statusCode: ${res[0]}`)
+            // console.log(res)  
+        })
+        .catch(error => {
+            console.error(error)
+        })
+}
+
+
 
 
 exports.smsSend = (param) => {
@@ -79,9 +102,9 @@ exports.smsSend = (param) => {
 
             console.log(param);
 
-            let message = param.message;         
+            let message = param.message;
             let mobile = param.mob;
-     
+
 
             http.get("" + link + "id=" + id + "&password=" + pword + "&text=" + message + "&to=" + mobile + "&from=MC.Kurunegala"
                 , function (err, res, body) {

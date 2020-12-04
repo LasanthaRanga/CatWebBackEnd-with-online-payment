@@ -5,16 +5,16 @@ const pool = mysql.createPool({
     port: 3306,
     user: 'root',
 
-    // password: 'root',
-    // database: 'vehicle_chi'
+    password: 'root',
+    database: 'vehicle'
 
 
     // password: 'CHI@#321#',
     // database: 'vehicle'
 
 
-    password: 'KULIUC@#321#',
-    database: 'vehicle'
+    // password: 'KULIUC@#321#',
+    // database: 'vehicle'
 
 });
 

@@ -89,12 +89,12 @@ router.post('/', (req, responce, nex) => {
             };
             mail.emailSend(param);
 
-            message.replace(" ", "+");
+            // message.replace(" ", "+");
             var smsParam = {
-                message: message + val,
-                mob: cus.mobile,
+                mg: message + val,
+                to: cus.mobile,
             };
-            mail.smsSend(smsParam);
+            mail.mobitelSmsSend(smsParam);
 
 
 
