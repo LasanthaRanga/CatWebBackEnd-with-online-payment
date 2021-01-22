@@ -3,6 +3,7 @@ const http = require('http');
 const db = require('../util/database');
 const axios = require('axios')
 
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 
@@ -64,7 +65,7 @@ exports.emailSend = (param) => {
 
 
 exports.mobitelSmsSend = (parm) => {
-   
+
     let send = {
         username: "esmsusr_1scv",
         password: "sre2ag",
@@ -83,6 +84,7 @@ exports.mobitelSmsSend = (parm) => {
             console.error(error)
         })
 }
+
 
 
 

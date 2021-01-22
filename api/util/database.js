@@ -6,12 +6,13 @@ const pool = mysql.createPool({
     // password: process.env.password,
     // database: process.env.database
 
+    // host: '124.43.23.214',
     host: 'localhost',
     port: 3306,
     user: 'root',
 
     password: 'root',
-    database: 'atd'
+    database: 'atd2'
 
     // password: 'CHI@#321#',
     // database: 'ultimate2'
@@ -22,4 +23,3 @@ const pool = mysql.createPool({
 });
 
 module.exports = pool.promise();
-

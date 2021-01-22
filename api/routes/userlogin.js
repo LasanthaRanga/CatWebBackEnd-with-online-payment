@@ -20,7 +20,7 @@ router.post('/keyval', (req, res, next) => {
 
 router.get('/getSubjectsByUid/:uid', (req, res, next) => {
     db.execute("SELECT user_has_subject.user_id, `subject`.idSubject, `subject`.subject_name, `subject`.subject_code FROM user_has_subject \
-    INNER JOIN `subject` ON `subject`.idSubject = user_has_subject.subject_id WHERE user_id ="+ req.params.uid,
+    INNER JOIN `subject` ON `subject`.idSubject = user_has_subject.subject_id WHERE user_id =" + req.params.uid,
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -158,8 +158,7 @@ router.post('/jwt/', (req, res, nex) => {
     db.execute("SELECT idUser, user_full_name, user_nic, user_date, user_status, user_syn, user_question, user_answer, user_username, user_password, user_level, office_idOffice, user_name_sinhala, mobile_no FROM `user` WHERE  user_username = '" + user.uname + "' AND  user_password = '" + user.pword + "'",
         (error, rows, fildData) => {
             if (!error) {
-                const token = jwt.sign({ email: '', uid: 2 }, process.env.JWT_KEY,
-                    { expiresIn: "1h" });
+                const token = jwt.sign({ email: '', uid: 2 }, process.env.JWT_KEY, { expiresIn: "1h" });
                 return res.status(200).json({
                     message: "Login Ok",
                     token: token
@@ -192,13 +191,21 @@ router.post('/', (req, res, nex) => {
                     FROM \
                     online_cus \
                     WHERE online_cus.`status`=1 \
-                    AND online_cus.mobile='"+ user.uname + "' \
-                    AND online_cus.pword='"+ user.pword + "'", (er, ro, fildData) => {
+                    AND online_cus.mobile='" + user.uname + "' \
+                    AND online_cus.pword='" + user.pword + "'", (er, ro, fildData) => {
                         if (!er) {
                             console.log(ro[0]);
-                            let dat = { type: 2, data: ro }
-                            res.status(200);
-                            res.send(dat);
+                            if (ro[0]) {
+                                let dat = { type: 2, data: ro }
+                                res.status(200);
+                                res.send(dat);
+                            } else {
+                                let dat = { type: 3, data: '' }
+                                res.status(200);
+                                res.send(dat);
+                            }
+
+
                         } else {
                             console.log(er);
                         }
