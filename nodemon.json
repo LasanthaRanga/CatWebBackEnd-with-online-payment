@@ -3,9 +3,10 @@
         "JWT_KEY": "secret",
         "host": "localhost",
         "user": "root",
-        "password": "@Mck_#321",      
+        "password": "@Mck_#321",
         "database": "angi",
         "sendby": "88lasantha@gmail.com",
-        "sendbypass": "Lasa2012g"
+        "sendbypass": "Lasa2012g",
+        "SabaName": " Kurunegala MC "
     }
-} 
+}

@@ -9,7 +9,7 @@ const mail = require('../../middleware/email');
 
 
 
-const message = "Registration Success in MC Kurunegala. Youre Verification code is : ";
+const message = "Registration Success in '" + process.env.SabaName + "'. Youre Verification code is : ";
 
 exports.conferm = (req, res, nex) => {
     const cus = { mobile: req.body.mobile, code: req.body.code }

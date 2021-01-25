@@ -10,7 +10,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var transporter = nodemailer.createTransport({
     host: 'mail.cat2020.org',
-    port: 465,
+    port: 2525,
     secure: false, // use SSL
     auth: {
         user: 'webportal@cat2020.org',
@@ -125,21 +125,4 @@ exports.smsSend = (param) => {
 
 
 
-
-
-
-
-
-    // http.get(request, function (err, res, body) {
-    //     if (err) {
-    //         console.log("sending error ====>");
-    //         //  console.log(err);
-    //     } else {
-    //         // console.log("Else");
-    //         //  console.log(res);
-    //         console.log("sent ====>");
-    //     }
-
-    // }
-    // );
 }
