@@ -75,7 +75,7 @@ exports.mobitelSmsSend = (parm) => {
         mesageType: 1
     }
 
-    axios.post('http://smeapps.mobitel.lk:8585/EnterpriseSMSV3/esmsproxyURL.php', send)
+    axios.post('https://smeapps.mobitel.lk:8585/EnterpriseSMSV3/esmsproxyURL.php', send)
         .then(res => {
             console.log(`statusCode: ${res[0]}`)
             // console.log(res)  
