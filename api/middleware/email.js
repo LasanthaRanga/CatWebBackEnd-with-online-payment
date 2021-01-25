@@ -9,12 +9,12 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 
 var transporter = nodemailer.createTransport({
-    host: 'mail.kgmc.lk',
-    port: 26,
+    host: 'mail.cat2020.org',
+    port: 465,
     secure: false, // use SSL
     auth: {
-        user: 'info@kgmc.lk',
-        pass: '!d%Th,Xoc4+4'
+        user: 'webportal@cat2020.org',
+        pass: 'webportal@2020'
     }
 });
 
@@ -26,7 +26,7 @@ exports.emailSend = (param) => {
         let mailOptions = '';
         if (param.html) {
             mailOptions = {
-                from: 'info@kgmc.lk',
+                from: 'webportal@cat2020.org',
                 to: param.to,
                 subject: param.subject,
                 text: param.message,
@@ -34,7 +34,7 @@ exports.emailSend = (param) => {
             }
         } else {
             mailOptions = {
-                from: 'info@kgmc.lk',
+                from: 'webportal@cat2020.org',
                 to: param.to,
                 subject: param.subject,
                 text: param.message
