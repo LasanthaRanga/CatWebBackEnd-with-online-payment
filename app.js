@@ -42,6 +42,10 @@ const allowedOrigins = [
     'http://kgmc.lk',
     'http://kgmc.lk:3001',
     'https://kgmc.lk',
+    'http://www.chilawuc.cat2020.org/',
+    'https://www.chilawuc.cat2020.org/',
+    'http://chilawuc.cat2020.org/',
+    'https://chilawuc.cat2020.org/',
     '*',
 ];
 
