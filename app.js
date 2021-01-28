@@ -34,7 +34,7 @@ const adminRoute = require('./api/routes/admin_panel/mixBillRouters');
 const allowedOrigins = [
     'capacitor://localhost',
     'ionic://localhost',
-    'http://localhost',    
+    'http://localhost',
     'http://localhost:4200',
     'http://192.168.8.103:4200',
     'http://localhost:8080',
@@ -47,6 +47,10 @@ const allowedOrigins = [
     'https://www.chilawuc.cat2020.org',
     'http://chilawuc.cat2020.org',
     'https://chilawuc.cat2020.org',
+    'http://www.kurunegalamc.cat2020.org',
+    'https://www.kurunegalamc.cat2020.org',
+    'http://kurunegalamc.cat2020.org',
+    'https://kurunegalamc.cat2020.org',
     '*',
 ];
 
