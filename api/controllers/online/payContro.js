@@ -1,6 +1,8 @@
 const db = require('../../util/database');
 const htmls = require('./htmleditContro');
 const mail = require('../../middleware/email');
+const axios = require('axios');
+const btoa = require('btoa');
 
 exports.rate = (req, res, next) => {
     db.execute("SELECT online_bank_rate.rate FROM online_bank_rate WHERE online_bank_rate.`status`= 1 ", (er, ro, fi) => {
@@ -19,14 +21,17 @@ exports.disabled = (req, res, next) => {
 };
 
 exports.pay = (req, res, nex) => {
+
     const param = { cusid: req.body.cusid, appcat: req.body.appcat, app: req.body.app, amount: req.body.amount, des: req.body.des, o1: req.body.o1, o2: req.body.o2, total: req.body.fullPay, rate: req.body.onValue }
+
     const datetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
     db.execute("INSERT INTO `online_pay`( `oncus_id`, `appcat_id`, `app_id`, `date`, `amount`, `status`, `description`, `other`, `other2`, `total`,`rate`) " +
         " VALUES ('" + param.cusid + "','" + param.appcat + "', '" + param.app + "', '" + datetime + "', " + param.amount + ", 0, '" + param.des + "', '" + param.o1 + "', '" + param.o2 + "','" + param.total + "','" + param.rate + "')",
         (error, rows, fildData) => {
             if (!error) {
                 console.log(rows);
-                this.boc(req, res, next, data);
+                param.o1 = rows.insertId;
+                this.boc(req, res, nex, param);
             } else {
                 console.log("error message");
                 console.log(error);
@@ -34,18 +39,18 @@ exports.pay = (req, res, nex) => {
         });
 };
 
-exports.boc = (req, res, next, data) => {
+exports.boc = (req, res, nex, param) => {
     axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/57/merchant/700193990048/session', {
         "apiOperation": "CREATE_CHECKOUT_SESSION",
         "interaction": {
             "operation": "PURCHASE",
-            "returnUrl": "http://localhost/return.html"
+            "returnUrl": "http://localhost:81/result/"
         },
         "order": {
             "currency": "LKR",
-            "id": "51",
-            "amount": "600.00",
-            "description": "assessment tax"
+            "id": param.o1 + "_AT_" + param.app,
+            "amount": param.total,
+            "description": "Assessment Tax - " + param.app + " cus - " + param.cusid + " id - " + param.o1
         }
     }, {
         headers: {
@@ -54,13 +59,17 @@ exports.boc = (req, res, next, data) => {
     }).then(boc => {
         console.log('-------------------------------');
         console.log(boc.data);
-        res.send(boc.data);
+        param.o2 = boc.data;
+        console.log(param);
+        res.send(param);
         console.log('-------------------------------');
     }).catch(error => {
         console.error(error.data)
         res.send({ error: error.data });
     })
 };
+
+
 
 exports.responce = (req, res, nex) => {
     console.log(req.body);
@@ -102,3 +111,4 @@ exports.responce = (req, res, nex) => {
             }
         });
 };
+

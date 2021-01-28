@@ -1,11 +1,17 @@
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({
-    host: '124.43.9.57',
     port: 3306,
-    user: 'root',
-    password: '@Mck_#321',
-    database: 'vehicle'
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.database,
+
+
+    // host: '124.43.11.162',
+    // user: 'root',
+    // password: '3ta@kela#una@',
+    // database: 'kalpitiyaps_vehicle'
 
 
     // password: 'CHI@#321#',

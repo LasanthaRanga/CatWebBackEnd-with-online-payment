@@ -34,11 +34,12 @@ const adminRoute = require('./api/routes/admin_panel/mixBillRouters');
 const allowedOrigins = [
     'capacitor://localhost',
     'ionic://localhost',
-    'http://localhost',
+    'http://localhost',    
     'http://localhost:4200',
     'http://192.168.8.103:4200',
     'http://localhost:8080',
     'http://localhost:8100',
+    'http://localhost:81',
     'http://kgmc.lk',
     'http://kgmc.lk:3001',
     'https://kgmc.lk',

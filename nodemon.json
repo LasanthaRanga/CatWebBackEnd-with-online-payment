@@ -1,12 +1,12 @@
 {
     "env": {
         "JWT_KEY": "secret",
-        "host": "localhost",
+        "host": "124.43.9.57",
         "user": "root",
         "password": "@Mck_#321",
-        "database": "angi",
-        "sendby": "88lasantha@gmail.com",
-        "sendbypass": "Lasa2012g",
-        "SabaName": " Kurunegala MC "
+        "database": "atd2",
+        "sendby": "webportal@cat2020.org",
+        "sendbypass": "webportal@2020",
+        "SabaName": " Kurunegala MC "        
     }
 }
