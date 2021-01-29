@@ -44,7 +44,7 @@ exports.boc = (req, res, nex, param) => {
         "apiOperation": "CREATE_CHECKOUT_SESSION",
         "interaction": {
             "operation": "PURCHASE",
-            "returnUrl": "http://localhost:81/result/"
+            "returnUrl": process.env.resultRedirect
         },
         "order": {
             "currency": "LKR",

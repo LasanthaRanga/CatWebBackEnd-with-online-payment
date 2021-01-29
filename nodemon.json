@@ -7,6 +7,7 @@
         "database": "atd2",
         "sendby": "webportal@cat2020.org",
         "sendbypass": "webportal@2020",
-        "SabaName": " Kurunegala MC "        
+        "SabaName": " Kurunegala MC ",
+        "resultRedirect" : "http://localhost:81/result/"        
     }
 }
