@@ -54,7 +54,7 @@ exports.boc = (req, res, nex, param) => {
         }
     }, {
         headers: {
-            'Authorization': 'Basic ' + btoa('merchant.700193990048:48e8f29e8583317960b4ff9050247dea')
+            'Authorization': 'Basic ' + btoa(process.env.bota_code)
         }
     }).then(boc => {
         console.log('-------------------------------');
