@@ -26,7 +26,7 @@ const onpay = require('./api/routes/online/pay');
 const onlinecustomer = require('./api/routes/online/customer');
 const vehicleRoute = require('./api/routes/vehicleRouters');
 const adminRoute = require('./api/routes/admin_panel/mixBillRouters');
-
+const streetRoute = require('./api/routes/online/street');
 
 // Testing Comment
 
@@ -95,6 +95,7 @@ app.use(urlPrifix + 'assess_data', assess_data);
 app.use(urlPrifix + 'onpay', onpay);
 app.use(urlPrifix + 'vehicle', vehicleRoute);
 app.use(urlPrifix + 'admin', adminRoute);
+app.use(urlPrifix + 'street', streetRoute);
 
 
 // app.use('/sms', (req, res, next) => {
