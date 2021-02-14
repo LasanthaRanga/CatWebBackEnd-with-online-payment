@@ -10,9 +10,10 @@ var nodemailer = require('nodemailer');
 
 
 exports.map = (req, res, nex) => {
-    const cus = { owner: req.body.owner, kform: req.body.kform, recit: req.body.recit, idoncus: req.body.idoncus, des: req.body.des }
+    console.log(req.body);
+    const cus = { owner: req.body.owner, kform: req.body.kform, recit: req.body.recit, idoncus: req.body.idoncus, des: req.body.des, astno: req.body.astno, street: req.body.street }
     const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    db.execute("INSERT INTO `online_cusprop` ( `idOnCus`, `appCat`, `aplayDate`, `status`, `propid`, `recitid`, `description`, `owner_name` )  VALUES	( '" + cus.idoncus + "', 2, '" + date + "', 0,  '" + cus.kform + "', '" + cus.recit + "', '" + cus.des + "', '" + cus.owner + "' )",
+    db.execute("INSERT INTO `online_cusprop` ( `idOnCus`, `appCat`, `aplayDate`, `status`, `propid`, `recitid`, `description`, `owner_name`, other1, other2 )  VALUES	( '" + cus.idoncus + "', 2, '" + date + "', 0,  '" + cus.kform + "', '" + cus.recit + "', '" + cus.des + "', '" + cus.owner + "', '" + cus.astno + "', '" + cus.street + "' )",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);

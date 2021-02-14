@@ -10,6 +10,9 @@ const message = "Registration Success in MC Kurunegala. Youre Verification code 
 router.post('/conferm', cusContro.conferm);
 router.post('/', cusContro.newCus);
 router.get('/', cusContro.getDip);
+router.post('/getVerification', cusContro.getVerification);
+router.post('/recover', cusContro.recover);
+router.post('/reset', cusContro.reset);
 
 
 

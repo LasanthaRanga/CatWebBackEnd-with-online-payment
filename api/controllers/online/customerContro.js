@@ -93,3 +93,64 @@ exports.getDip = (req, res, nex) => {
             }
         });
 };
+
+exports.getVerification = (req, res, nex) => {
+    db.execute("SELECT online_cus.idOnline,online_cus.fullname,online_cus.nic,online_cus.email,online_cus.mobile,online_cus.pword,online_cus.`status`,online_cus.`code` FROM online_cus WHERE online_cus.mobile='" + req.body.mobile + "'",
+        (error, rows, fildData) => {
+            if (!error) {
+                if (rows[0] && rows[0].mobile == req.body.mobile) {
+                    console.log("OK");
+                    var val = Math.floor(1000 + Math.random() * 9000);
+                    db.execute("UPDATE `online_cus` SET `status`=0,`code`='" + val + "' WHERE `idOnline`=" + rows[0].idOnline, (e, r, f) => {
+                        if (!e) {
+                            var smsParam = {
+                                mg: 'Verification Code is : ' + val,
+                                to: req.body.mobile,
+                            };
+                            mail.mobitelSmsSend(smsParam);
+                            res.send({ mg: "Ok" });
+                        } else {
+                            res.send({ mg: "No" });
+                        }
+                    });
+                } else {
+                    console.log("NO");
+                    res.send({ mg: "No" });
+                }
+
+            } else {
+                console.log("error message");
+                console.log(error.message);
+            }
+        });
+};
+
+
+exports.recover = (req, res, nex) => {
+    db.execute("SELECT online_cus.idOnline,online_cus.fullname,online_cus.nic,online_cus.email,online_cus.mobile,online_cus.`status`,online_cus.`code` FROM online_cus WHERE online_cus.mobile='" + req.body.mobile + "' AND online_cus.`status`=0 AND online_cus.`code`='" + req.body.code + "'",
+        (error, rows, fildData) => {
+            if (!error) {
+                if (rows[0]) {
+                    res.send({ mg: "Ok" });
+                } else {
+                    res.send({ mg: "No" });
+                }
+            } else {
+                console.log("error message");
+                console.log(error.message);
+            }
+        });
+};
+
+
+exports.reset = (req, res, nex) => {
+    db.execute("UPDATE `online_cus` SET `status`=1, `pword`='" + req.body.pword + "' WHERE `mobile`='" + req.body.mobile + "'",
+        (error, rows, fildData) => {
+            if (!error) {
+                res.send(rows);
+            } else {
+                console.log("error message");
+                console.log(error.message);
+            }
+        });
+};
