@@ -40,33 +40,44 @@ exports.pay = (req, res, nex) => {
 };
 
 exports.boc = (req, res, nex, param) => {
-    axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/57/merchant/700193990048/session', {
-        "apiOperation": "CREATE_CHECKOUT_SESSION",
-        "interaction": {
-            "operation": "PURCHASE",
-            "returnUrl": process.env.resultRedirect
-        },
-        "order": {
-            "currency": "LKR",
-            "id": param.o1 + "_AT_" + param.app,
-            "amount": param.total,
-            "description": "Assessment Tax - " + param.app + " cus - " + param.cusid + " id - " + param.o1
-        }
-    }, {
-        headers: {
-            'Authorization': 'Basic ' + btoa(process.env.bota_code)
-        }
-    }).then(boc => {
-        console.log('-------------------------------');
-        console.log(boc.data);
-        param.o2 = boc.data;
+    try {
+
         console.log(param);
-        res.send(param);
-        console.log('-------------------------------');
-    }).catch(error => {
-        console.error(error.data)
-        res.send({ error: error.data });
-    })
+        console.log(process.env.resultRedirect);
+        console.log(process.env.bota_code);
+
+        axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/57/merchant/700193990048/session', {
+            "apiOperation": "CREATE_CHECKOUT_SESSION",
+            "interaction": {
+                "operation": "PURCHASE",
+                "returnUrl": process.env.resultRedirect
+            },
+            "order": {
+                "currency": "LKR",
+                "id": param.o1 + "_AT_" + param.app,
+                "amount": param.total,
+                "description": "Assessment Tax - " + param.app + " cus - " + param.cusid + " id - " + param.o1
+            }
+        }, {
+            headers: {
+                'Authorization': 'Basic ' + btoa('merchant.700193990048:48e8f29e8583317960b4ff9050247dea')
+            }
+        }).then(boc => {
+            console.log('-------------------------------');
+            console.log(boc.data);
+            param.o2 = boc.data;
+            console.log(param);
+            res.send(param);
+            console.log('-------------------------------');
+        }).catch(err => {
+            console.log('********************');
+            console.log(err)
+            console.error(err.data)
+            res.send({ error: err.data });
+        })
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 
