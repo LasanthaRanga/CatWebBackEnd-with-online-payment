@@ -1,10 +1,10 @@
 {
     "env": {
         "JWT_KEY": "secret",
-        "host": "124.43.9.57",
+        "host": "localhost",
         "user": "root",
-        "password": "@Mck_#321",
-        "database": "atd2",
+        "password": "root",
+        "database": "ultimate2",
         "sendby": "webportal@cat2020.org",
         "sendbypass": "webportal@2020",
         "SabaName": " Kurunegala MC ",

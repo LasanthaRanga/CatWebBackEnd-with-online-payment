@@ -6,7 +6,7 @@ var dateFormat = require('dateformat');
 exports.getDrivers = (req, res, next) => {
     console.log(req.body);
     try {
-        var quary = "SELECT `user`.idUser AS id,`user`.user_full_name AS name FROM `user` INNER JOIN user_has_approval_cat ON user_has_approval_cat.User_idUser=`user`.idUser INNER JOIN approval_cat ON user_has_approval_cat.Approval_cat_idApproval_cat=approval_cat.idApproval_cat WHERE approval_cat.idApproval_cat=34";
+        var quary = "SELECT `user`.idUser AS id,`user`.user_full_name AS name FROM `user` INNER JOIN user_has_approval_cat ON user_has_approval_cat.User_idUser=`user`.idUser INNER JOIN approval_cat ON user_has_approval_cat.Approval_cat_idApproval_cat=approval_cat.idApproval_cat WHERE approval_cat.idApproval_cat=35";
         cdb.execute(quary, (er, ro, fd) => {
             if (!er) {
                 res.send(ro);
