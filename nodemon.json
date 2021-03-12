@@ -1,13 +1,13 @@
 {
     "env": {
         "JWT_KEY": "secret",
-        "host": "localhost",
+        "host": "124.43.8.250",
         "user": "root",
-        "password": "root",
-        "database": "ultimate2",
+        "password": "CHI@#321#",
+        "database": "atd2",
         "sendby": "webportal@cat2020.org",
         "sendbypass": "webportal@2020",
-        "SabaName": " Kurunegala MC ",
+        "SabaName": " CHILAW UC ",
         "resultRedirect": "http://localhost:81/result/",
         "bota_code": "'merchant.700193990048:48e8f29e8583317960b4ff9050247dea'"
     }
