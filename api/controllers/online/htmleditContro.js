@@ -467,9 +467,13 @@ exports.re2 =
     "      <table class=\"email-content\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" role=\"presentation\">   " +
     "        <tr>   " +
     "          <td class=\"email-masthead\">   " +
-    "            <a href=\"https://kgmc.lk\" class=\"f-fallback email-masthead_name\">   " +
-    "              Municipal Council Kurunegala   " +
-    "            </a>   " +
+    "            <a href=\"";
+
+// https://kgmc.lk\
+
+exports.re22 = "\" class=\"f-fallback email-masthead_name\">   ";
+//  "Municipal Council Kurunegala"
+exports.re222 = "            </a>   " +
     "          </td>   " +
     "        </tr>   " +
     "        <!-- Email Body -->   " +

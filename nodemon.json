@@ -7,7 +7,8 @@
         "database": "atd2",
         "sendby": "webportal@cat2020.org",
         "sendbypass": "webportal@2020",
-        "SabaName": " CHILAW UC ",
+        "SabaName": "CHILAW URBAN COUNCIL",
+        "rootPath": "https://chilawuc.cat2020.org",
         "resultRedirect": "http://localhost:81/result/",
         "bota_code": "'merchant.700193990048:48e8f29e8583317960b4ff9050247dea'"
     }
