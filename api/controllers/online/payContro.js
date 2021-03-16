@@ -43,7 +43,7 @@ exports.boc = (req, res, nex, param) => {
     try {
 
         console.log(param);
-        console.log(procss.env.resultRedirect);
+        console.log(process.env.resultRedirect);
         console.log(process.env.bota_code);
 
         axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/57/merchant/700193990103/session', {
