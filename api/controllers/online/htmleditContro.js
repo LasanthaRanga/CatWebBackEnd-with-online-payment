@@ -541,7 +541,7 @@ exports.re8 =
     "                        </td>   " +
     "                      </tr>   " +
     "                    </table>   " +
-    "                    <p>If you have any questions about this receipt please feel free to contact us for further clarification if any  070123456789</p>   " +
+    "                    <p>If you have any questions about this receipt please feel free to contact us for further clarification if any  0768331689</p>   " +
     "                  </div>   " +
     "                </td>   " +
     "              </tr>   " +
@@ -555,10 +555,10 @@ exports.re8 =
     "              <tr>   " +
     "                <td class=\"content-cell\" align=\"center\">   " +
     "                  <p class=\"f-fallback sub align-center\">   " +
-    "                    Municipal Council Kurunegala,   " +
+    "                     Chilaw Urban Council,   " +
     "                    <br>Sri Lanka   " +
     "                  </p>   " +
-    "                  <p class=\"f-fallback sub align-center\">&copy; <a href=\"\">Sun System Technologis And Developers (pvt) ltd</a>. All rights reserved.</p>   " +
+    "                  <p class=\"f-fallback sub align-center\">&copy; <a href=\"\">Cat20 System Wayamba Development Authority</a>. All rights reserved.</p>   " +
     "                </td>   " +
     "              </tr>   " +
     "            </table>  " +
