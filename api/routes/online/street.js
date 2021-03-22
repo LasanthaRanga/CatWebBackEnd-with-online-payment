@@ -11,5 +11,6 @@ router.post('/getref', street.getrefno);
 router.post('/getrefid', street.getrefid);
 router.post('/getslid', street.getslid);
 router.post('/getoldsl', street.getoldsldetails);
+router.post('/savedha', street.savedha);
 
 module.exports = router;

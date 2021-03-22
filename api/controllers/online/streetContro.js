@@ -127,3 +127,21 @@ exports.getoldsldetails = (req, res, nex) => {
             }
         });
 };
+
+exports.savedha = (req, res, nex) => {
+    console.log(req.body);
+
+    //var day6 = dateFormat(new Date(), "yyyy-mm-dd");
+    var day6 = dateFormat(req.body.doc_hand_send_date, "yyyy-mm-dd");
+    console.log(day6);
+    db.execute("INSERT INTO `doc_hand_approve` ( `application_doc_hand_category_id`, `doc_hand_subject_id`, `doc_hand_send_user_category`, `doc_hand_send_date`, `doc_hand_send_time`, `doc_hand_recevied_user_category`, `doc_hand_complete_status`, `doc_hand_send_user_id`, `doc_hand_accept_or_reject` ) VALUES ( '7', '"+req.body.doc_hand_subject_id+"', '5', '"+day6+"', '12:00:00', '6', '0', '1', '0' );",
+        (error, rows, fildData) => {
+            if (!error) {
+                console.log(rows);
+                res.send(rows);
+            } else {
+                console.log("error message");
+                console.log(error.message);
+            }
+        });
+};
