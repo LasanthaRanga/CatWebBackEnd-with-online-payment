@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const message = require('./api/middleware/email');
 const btoa = require('btoa');
 const axios = require('axios');
-
+const fs = require('fs');
 
 const userlogin = require('./api/routes/userlogin');
 const privilage = require('./api/routes/privilage');
@@ -39,9 +39,9 @@ const allowedOrigins = [
     'http://192.168.8.103:4200',
     'http://localhost:8080',
     'http://localhost:8100',
-    'http://localhost:81', 
+    'http://localhost:81',
     'http://chilawuc.cat2020.org',
-    'https://chilawuc.cat2020.org',  
+    'https://chilawuc.cat2020.org',
     'http://kurunegalamc.cat2020.org',
     'https://kurunegalamc.cat2020.org',
     '*',
