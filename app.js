@@ -27,7 +27,8 @@ const onlinecustomer = require('./api/routes/online/customer');
 const vehicleRoute = require('./api/routes/vehicleRouters');
 const adminRoute = require('./api/routes/admin_panel/mixBillRouters');
 const streetRoute = require('./api/routes/online/street');
-
+const slcomRoute = require('./api/routes/online/slcomroute');
+const complain = require('./api/routes/online/complain');
 // Testing Comment
 
 
@@ -89,7 +90,8 @@ app.use(urlPrifix + 'onpay', onpay);
 app.use(urlPrifix + 'vehicle', vehicleRoute);
 app.use(urlPrifix + 'admin', adminRoute);
 app.use(urlPrifix + 'street', streetRoute);
-
+app.use(urlPrifix + 'slcom',slcomRoute );
+app.use(urlPrifix + 'complains',complain );
 
 // app.use('/sms', (req, res, next) => {
 //   message.mobitelSmsSend({ to: '0702517628', mg: 'test parameeter' });
