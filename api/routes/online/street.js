@@ -12,5 +12,6 @@ router.post('/getrefid', street.getrefid);
 router.post('/getslid', street.getslid);
 router.post('/getoldsl', street.getoldsldetails);
 router.post('/savedha', street.savedha);
+router.post('/getcer', street.getcertificate);
 
 module.exports = router;

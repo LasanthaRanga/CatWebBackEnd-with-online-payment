@@ -145,3 +145,18 @@ exports.savedha = (req, res, nex) => {
             }
         });
 };
+
+exports.getcertificate = (req, res, nex) => {
+    console.log(req.body);
+
+    db.execute("SELECT sl_details.slDate, customer.cus_name_sinhala, sl_details.sl_reference_no, customer.cus_mobile, sl_details.idStreetLine FROM doc_hand_approve INNER JOIN sl_details ON doc_hand_approve.doc_hand_subject_id = sl_details.idStreetLine INNER JOIN customer ON sl_details.customer_idCustomer = customer.idCustomer LEFT JOIN assessment ON sl_details.ass_id = assessment.idAssessment WHERE doc_hand_approve.doc_hand_accept_or_reject = '3' AND doc_hand_approve.application_doc_hand_category_id = '7' AND sl_details.slStatus = '1' AND sl_details.online_cus_id = '" + req.body.oncusid + "'",
+        (error, rows, fildData) => {
+            if (!error) {
+                console.log(rows);
+                res.send(rows);
+            } else {
+                console.log("error message");
+                console.log(error.message);
+            }
+        });
+};
