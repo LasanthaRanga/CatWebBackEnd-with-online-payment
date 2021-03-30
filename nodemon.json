@@ -10,6 +10,7 @@
         "SabaName": "CHILAW URBAN COUNCIL",
         "rootPath": "https://chilawuc.cat2020.org",
         "resultRedirect": "http://localhost:81/result/",
+        "resultRedirectOther": "http://localhost:81/result/other.html",
         "bota_code": "'merchant.700193990048:48e8f29e8583317960b4ff9050247dea'"
     }
 }
