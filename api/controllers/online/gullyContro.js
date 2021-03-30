@@ -8,10 +8,12 @@ const mail = require('../../middleware/email');
 const axios = require('axios');
 const btoa = require('btoa');
 const htmls = require('./htmleditContro');
+var dateFormat = require('dateformat');
 
 exports.savegdetails = (req, res, nex) => {
     console.log(req.body);
-    db.execute("INSERT INTO `g_online_details` ( `g_mobile`, `g_address`, `g_nature_of_place`, `g_townarea_or_not`, `g_distance`, `g_facility_for_parking`, `g_distance_between_gully_tank`, `g_email`, `g_active_status`, `g_pending_status`, `g_date`, `g_cus_id`) VALUES ( '"+req.body.mobile+"', '"+req.body.adress+"', '"+req.body.nature+"', '1', '"+req.body.distanceintown+"', '1', '"+req.body.distanceintank+"', '"+req.body.email+"', '1', '1','2021-12-12','"+req.body.g_cus_id+"' );",
+    var day = dateFormat(new Date(), "yyyy-mm-dd");
+    db.execute("INSERT INTO `g_online_details` ( `g_mobile`, `g_address`, `g_nature_of_place`, `g_townarea_or_not`, `g_distance`, `g_facility_for_parking`, `g_distance_between_gully_tank`, `g_email`, `g_active_status`, `g_pending_status`, `g_date`, `g_cus_id` ) VALUES ( '"+req.body.mobile+"', '"+req.body.adress+"', '"+req.body.nature+"', '1', '"+req.body.distanceintown+"', '1', '"+req.body.distanceintank+"', '"+req.body.email+"', '1', '1', '"+day+"', '"+req.body.g_cus_id+"' );",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -63,7 +65,7 @@ exports.getallpendinglist = (req, res, nex) => {
 
 exports.moreinfo = (req, res, nex) => {
     console.log(req.body);
-    db.execute("SELECT g_nature.g_nature, g_status.`name`, g_online_details.g_detail_id, DATE_FORMAT( g_online_details.g_date, '%Y %M %d ' ) AS g_date, g_online_details.g_address, g_town_area.`status`, g_town_area.`name` AS tname, g_online_details.g_cus_id FROM g_online_details INNER JOIN g_nature ON g_online_details.g_nature_of_place = g_nature.g_nature_id INNER JOIN g_status ON g_online_details.g_pending_status = g_status.`status` INNER JOIN g_town_area ON g_online_details.g_townarea_or_not = g_town_area.`status` WHERE g_online_details.g_active_status = '1' AND g_online_details.g_detail_id = '"+req.body.appid+"'",
+    db.execute("SELECT g_nature.g_nature, g_status.`name`, g_online_details.g_detail_id, DATE_FORMAT( g_online_details.g_date, '%Y %M %d ' ) AS g_date, g_online_details.g_address, g_town_area.`status`, g_town_area.`name` AS tname, g_online_details.g_cus_id, g_online_details.g_distance FROM g_online_details INNER JOIN g_nature ON g_online_details.g_nature_of_place = g_nature.g_nature_id INNER JOIN g_status ON g_online_details.g_pending_status = g_status.`status` INNER JOIN g_town_area ON g_online_details.g_townarea_or_not = g_town_area.`status` WHERE g_online_details.g_active_status = '1' AND g_online_details.g_detail_id = '"+req.body.appid+"'",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -180,7 +182,7 @@ exports.boc = (req, res, nex, param) => {
         console.log(process.env.resultRedirect);
         console.log(process.env.bota_code);
 
-        axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/57/merchant/700193990048/session', {
+        axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/57/merchant/700193990103/session', {
             "apiOperation": "CREATE_CHECKOUT_SESSION",
             "interaction": {
                 "operation": "PURCHASE",
@@ -194,7 +196,7 @@ exports.boc = (req, res, nex, param) => {
             }
         }, {
             headers: {
-                'Authorization': 'Basic ' + btoa('merchant.700193990048:48e8f29e8583317960b4ff9050247dea')
+                'Authorization': 'Basic ' + btoa('merchant.700193990103:57f24130a5b9175d29978ba30ef0ad44')
             }
         }).then(boc => {
             console.log('-------------------------------');
