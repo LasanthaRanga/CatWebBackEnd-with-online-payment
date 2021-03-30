@@ -130,7 +130,7 @@ exports.getpaymentforcus = (req, res, nex) => {
 
 exports.getpayment_detail_by_id = (req, res, nex) => {
     console.log(req.body);
-    db.execute("SELECT online_application_pay.onlin_pay_details, online_application_pay.description, online_application_pay.cus_id, online_application_pay.online_pay_amount, online_application_pay.online_pay_application_id, online_application_pay.onlin_pay_app_cat FROM `online_application_pay` WHERE online_application_pay.online_pay_active_status = '1' AND online_application_pay.cus_id = '"+req.body.cus_id+"' AND online_application_pay.onlin_pay_details = '"+req.body.payid+"'",
+    db.execute("SELECT online_application_pay.onlin_pay_details, online_application_pay.description, online_application_pay.cus_id, online_application_pay.online_pay_amount, online_application_pay.online_pay_application_id, online_application_pay.onlin_pay_app_cat, application_catagory.sh_name FROM online_application_pay INNER JOIN application_catagory ON online_application_pay.onlin_pay_app_cat = application_catagory.idApplication_Catagory WHERE online_application_pay.online_pay_active_status = '1' AND online_application_pay.cus_id = '"+req.body.cus_id+"' AND online_application_pay.onlin_pay_details = '"+req.body.payid+"'",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -158,7 +158,7 @@ exports.pay = (req, res, nex) => {
     console.log('========');
     console.log(req.body);
     console.log('========');
-    const param = { cusid: req.body.cusid, appcat: req.body.appcat, app: req.body.app, amount: req.body.amount, des: req.body.des, o1: req.body.o1, o2: req.body.o2, total: req.body.fullPay, rate: req.body.onValue }
+    const param = { cusid: req.body.cusid, appcat: req.body.appcat, app: req.body.app, amount: req.body.amount, des: req.body.des, o1: req.body.o1, o2: req.body.o2, total: req.body.fullPay, rate: req.body.onValue,catname:req.body.catname }
     console.log(param);
     const datetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
     db.execute("INSERT INTO `online_pay`( `oncus_id`, `appcat_id`, `app_id`, `date`, `amount`, `status`, `description`, `other`, `other2`, `total`,`rate`) " +
@@ -190,7 +190,7 @@ exports.boc = (req, res, nex, param) => {
             },
             "order": {
                 "currency": "LKR",
-                "id": param.o1 + "_GUL_" + param.app,
+                "id": param.o1 + "_"+param.catname+"_"+ param.app,
                 "amount": param.total,
                 "description": "Gully service - " + param.app + " cus - " + param.cusid + " id - " + param.o1
             }
