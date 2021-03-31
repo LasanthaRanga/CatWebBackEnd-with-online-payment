@@ -45,8 +45,9 @@ exports.boc = (req, res, nex, param) => {
         console.log(param);
         console.log(process.env.resultRedirect);
         console.log(process.env.bota_code);
-
-        axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/57/merchant/700193990103/session', {
+        http://bankofceylon.gateway.mastercard.com/api/nvp/version/58
+        axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990103/session', {
+            // axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/57/merchant/700193990103/session', {
             "apiOperation": "CREATE_CHECKOUT_SESSION",
             "interaction": {
                 "operation": "PURCHASE",
@@ -60,7 +61,8 @@ exports.boc = (req, res, nex, param) => {
             }
         }, {
             headers: {
-                'Authorization': 'Basic ' + btoa('merchant.700193990103:57f24130a5b9175d29978ba30ef0ad44')
+                // 'Authorization': 'Basic ' + btoa('merchant.700193990103:57f24130a5b9175d29978ba30ef0ad44')
+                'Authorization': 'Basic ' + btoa('merchant.700193990103:80b0683907d9490a24436a592da22700')
             }
         }).then(boc => {
             console.log('-------------------------------');
