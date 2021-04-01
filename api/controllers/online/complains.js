@@ -29,8 +29,23 @@ exports.allcomplain = (req, res, nex) => {
 
     console.log(req.body);
     var datetime = new Date();
-    //db.execute("SELECT online_complains.online_complain_name, online_complains.online_complain_tell_no, online_complains.online_complains, online_complains.online_complain_date, IF ( online_complains.online_complain_date = 0, 'Complete', 'Not Complete' ) AS statuss FROM `online_complains` WHERE online_complains.online_complain_status = '0'",
-    db.execute("SELECT online_cus.fullname, online_cus.mobile, online_complains.online_complains, online_complains.online_complain_date, IF ( online_complains.online_complain_date = 0, 'Complete', 'Not Complete' ) AS statuss FROM online_complains INNER JOIN online_cus ON online_complains.online_cus_id = online_cus.idOnline WHERE online_complains.online_complain_status = '0'",
+    //db.execute("SELECT online_cus.fullname, online_cus.mobile, online_complains.online_complains, online_complains.online_complain_date, IF ( online_complains.online_complain_date = 0, 'Complete', 'Not Complete' ) AS statuss FROM online_complains INNER JOIN online_cus ON online_complains.online_cus_id = online_cus.idOnline WHERE online_complains.online_complain_status = '0'",
+    db.execute("SELECT online_cus.fullname, online_cus.mobile, online_complains.online_complains, online_complains.online_complain_date, IF ( online_complains.online_complain_date = 0, 'Complete', 'Not Complete' ) AS statuss, online_complains.online_complain_id FROM online_complains INNER JOIN online_cus ON online_complains.online_cus_id = online_cus.idOnline WHERE online_complains.online_complain_status = '0'",
+    (error, rows, fildData) => {
+            if (!error) {
+                res.send(rows);
+            } else {
+                console.log("error message");
+                console.log(error.message);
+            }
+        });
+};
+
+exports.complain_by_user = (req, res, nex) => {
+
+    console.log(req.body);
+    var datetime = new Date();
+    db.execute("SELECT online_cus.fullname, online_cus.mobile, online_complains.online_complains, online_complains.online_complain_date, IF ( online_complains.online_complain_date = 0, 'Complete', 'Not Complete' ) AS statuss, online_complains.online_complain_id FROM online_complains INNER JOIN online_cus ON online_complains.online_cus_id = online_cus.idOnline WHERE online_complains.online_complain_status = '0' AND online_complains.online_cus_id = '" + req.body.cus_id + "'",
     (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);

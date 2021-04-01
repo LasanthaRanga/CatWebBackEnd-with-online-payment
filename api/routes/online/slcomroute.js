@@ -4,6 +4,6 @@ const slcom = require('../../controllers/online/slcom');
 
 
 router.post('/saveslcom', slcom.saveslcom);
-//router.post('/getStreet', street.getStreet);
+router.post('/getslcom', slcom.getslcom);
 
 module.exports = router;
