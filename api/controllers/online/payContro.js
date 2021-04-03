@@ -57,7 +57,7 @@ exports.boc = (req, res, nex, param) => {
                 "currency": "LKR",
                 "id": param.o1 + "_AT_" + param.app,
                 "amount": param.total,
-                "description": "Assessment Tax - " + param.app + " cus - " + param.cusid + " id - " + param.o1
+                "description": "A.Tax " + param.app + " C " + param.cusid + " ID " + param.o1
             }
         }, {
             headers: {
@@ -112,7 +112,9 @@ exports.responce = (req, res, nex) => {
                                 subject: 'Payment Recipt',
                                 text: 'Text message',
                             };
+
                             mail.emailSend(param);
+                            mail.mobitelSmsSend({ to: data.mobile, mg: 'Payment Success : ' + data.amount });
 
                         }
                         res.send(rows);

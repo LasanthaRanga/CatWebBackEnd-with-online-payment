@@ -41,19 +41,22 @@ router.get('/:id/:year', (req, res, nex) => {
 
 
                 rows.forEach(el => {
-
                     if (el.ass_Qstart_status == 1) {
                         obj.lya = el.ass_Qstart_LYC_Arreas;
                         obj.lyw = el.ass_Qstart_LYC_Warrant;
                         obj.qpay = el.ass_Qstart_HaveToQPay;
-                        obj.tya += el.ass_Qstart_LQC_Arreas;
-                        obj.tyw += el.ass_Qstart_LQC_Warrant;
+                        if (el.ass_Qstart_QuaterNumber != 1) {
+                            obj.tya += el.ass_Qstart_LQC_Arreas;
+                            obj.tyw += el.ass_Qstart_LQC_Warrant;
+                        }
                     } else {
-                        obj.tya += el.ass_Qstart_LQC_Arreas;
-                        obj.tyw += el.ass_Qstart_LQC_Warrant;
+                        if (el.ass_Qstart_QuaterNumber != 1) {
+                            obj.tya += el.ass_Qstart_LQC_Arreas;
+                            obj.tyw += el.ass_Qstart_LQC_Warrant;
+                        }
                     }
-
                 });
+
 
                 obj.tot = obj.lyw + obj.lya + obj.tya + obj.tyw + obj.qpay;
                 obj.tya = obj.tya.toFixed(2);
