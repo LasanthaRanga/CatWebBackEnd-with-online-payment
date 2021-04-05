@@ -114,7 +114,7 @@ exports.responce = (req, res, nex) => {
                             };
 
                             mail.emailSend(param);
-                            mail.mobitelSmsSend({ to: data.mobile, mg: 'Payment Success : ' + data.amount });
+                            mail.mobitelSmsSend({ to: data.mobile, mg: 'Payment Success LKR. ' + data.amount });
 
                         }
                         res.send(rows);
