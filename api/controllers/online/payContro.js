@@ -109,7 +109,7 @@ exports.responce = (req, res, nex) => {
                             var param = {
                                 html: content,
                                 to: data.email,
-                                subject: 'Payment Recipt',
+                                subject: 'Payment Receipt',
                                 text: 'Text message',
                             };
 

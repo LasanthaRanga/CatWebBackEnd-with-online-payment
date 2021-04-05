@@ -488,7 +488,7 @@ exports.re222 = "            </a>   " +
 
 exports.re3 =
 
-    "                    <p>Thanks for using online payment This is receipt for you payment confirm</p>   " +
+    "                    <p>Thanks for using online payment. This receipt is for you payment confirmation</p>   " +
     "   " +
     "                    <table class=\"purchase\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">   " +
     "                      <tr>   " +
