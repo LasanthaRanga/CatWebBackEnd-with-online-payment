@@ -556,7 +556,7 @@ exports.re9 = " </p>   " +
     "              <tr>   " +
     "                <td class=\"content-cell\" align=\"center\">   " +
     "                  <p class=\"f-fallback sub align-center\">   ";
-exports.re10 +
+exports.re10 =
     "                    <br>Sri Lanka   " +
     "                  </p>   " +
     "                  <p class=\"f-fallback sub align-center\">&copy; <a href=\"\">Cat20 System Wayamba Development Authority</a>. All rights reserved.</p>   " +
