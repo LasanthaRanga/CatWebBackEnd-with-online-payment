@@ -47,6 +47,8 @@ const allowedOrigins = [
     'https://chilawuc.cat2020.org',
     'http://kurunegalamc.cat2020.org',
     'https://kurunegalamc.cat2020.org',
+    'http://kuliyapitiyauc.cat2020.org',
+    'https://kuliyapitiyauc.cat2020.org',
     '*',
 ];
 
