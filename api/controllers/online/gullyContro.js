@@ -13,7 +13,7 @@ var dateFormat = require('dateformat');
 exports.savegdetails = (req, res, nex) => {
     console.log(req.body);
     var day = dateFormat(new Date(), "yyyy-mm-dd");
-    db.execute("INSERT INTO `g_online_details` ( `g_mobile`, `g_address`, `g_nature_of_place`, `g_townarea_or_not`, `g_distance`, `g_facility_for_parking`, `g_distance_between_gully_tank`, `g_email`, `g_active_status`, `g_pending_status`, `g_date`, `g_cus_id` ) VALUES ( '"+req.body.mobile+"', '"+req.body.adress+"', '"+req.body.nature+"', '1', '"+req.body.distanceintown+"', '1', '"+req.body.distanceintank+"', '"+req.body.email+"', '1', '1', '"+day+"', '"+req.body.g_cus_id+"' );",
+    db.execute("INSERT INTO `g_online_details` ( `g_mobile`, `g_address`, `g_nature_of_place`, `g_townarea_or_not`, `g_distance`, `g_facility_for_parking`, `g_distance_between_gully_tank`, `g_email`, `g_active_status`, `g_pending_status`, `g_date`, `g_cus_id` ) VALUES ( '" + req.body.mobile + "', '" + req.body.adress + "', '" + req.body.nature + "', '1', '" + req.body.distanceintown + "', '1', '" + req.body.distanceintank + "', '" + req.body.email + "', '1', '1', '" + day + "', '" + req.body.g_cus_id + "' );",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -39,7 +39,7 @@ exports.getnatures = (req, res, nex) => {
 
 exports.getpendinglist = (req, res, nex) => {
     console.log(req.body);
-    db.execute("SELECT DATE_FORMAT( g_online_details.g_date, '%Y %M %d ' ) AS g_date, g_online_details.g_address, g_nature.g_nature, g_online_details.g_detail_id FROM g_online_details INNER JOIN g_nature ON g_online_details.g_nature_of_place = g_nature.g_nature_id WHERE g_online_details.g_cus_id = '"+req.body.cusid+"' AND g_online_details.g_active_status = '1' AND g_online_details.g_pending_status = '1'",
+    db.execute("SELECT DATE_FORMAT( g_online_details.g_date, '%Y %M %d ' ) AS g_date, g_online_details.g_address, g_nature.g_nature, g_online_details.g_detail_id FROM g_online_details INNER JOIN g_nature ON g_online_details.g_nature_of_place = g_nature.g_nature_id WHERE g_online_details.g_cus_id = '" + req.body.cusid + "' AND g_online_details.g_active_status = '1' AND g_online_details.g_pending_status = '1'",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -65,7 +65,7 @@ exports.getallpendinglist = (req, res, nex) => {
 
 exports.moreinfo = (req, res, nex) => {
     console.log(req.body);
-    db.execute("SELECT g_nature.g_nature, g_status.`name`, g_online_details.g_detail_id, DATE_FORMAT( g_online_details.g_date, '%Y %M %d ' ) AS g_date, g_online_details.g_address, g_town_area.`status`, g_town_area.`name` AS tname, g_online_details.g_cus_id, g_online_details.g_distance FROM g_online_details INNER JOIN g_nature ON g_online_details.g_nature_of_place = g_nature.g_nature_id INNER JOIN g_status ON g_online_details.g_pending_status = g_status.`status` INNER JOIN g_town_area ON g_online_details.g_townarea_or_not = g_town_area.`status` WHERE g_online_details.g_active_status = '1' AND g_online_details.g_detail_id = '"+req.body.appid+"'",
+    db.execute("SELECT g_nature.g_nature, g_status.`name`, g_online_details.g_detail_id, DATE_FORMAT( g_online_details.g_date, '%Y %M %d ' ) AS g_date, g_online_details.g_address, g_town_area.`status`, g_town_area.`name` AS tname, g_online_details.g_cus_id, g_online_details.g_distance FROM g_online_details INNER JOIN g_nature ON g_online_details.g_nature_of_place = g_nature.g_nature_id INNER JOIN g_status ON g_online_details.g_pending_status = g_status.`status` INNER JOIN g_town_area ON g_online_details.g_townarea_or_not = g_town_area.`status` WHERE g_online_details.g_active_status = '1' AND g_online_details.g_detail_id = '" + req.body.appid + "'",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -78,7 +78,7 @@ exports.moreinfo = (req, res, nex) => {
 
 exports.addamount = (req, res, nex) => {
     console.log(req.body);
-    db.execute("UPDATE `g_online_details` SET `g_pending_status` = '2', `g_amount` = '"+req.body.amount+"' WHERE (`g_detail_id` = '"+req.body.g_detail_id+"');",
+    db.execute("UPDATE `g_online_details` SET `g_pending_status` = '2', `g_amount` = '" + req.body.amount + "' WHERE (`g_detail_id` = '" + req.body.g_detail_id + "');",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -91,7 +91,7 @@ exports.addamount = (req, res, nex) => {
 
 exports.addamount = (req, res, nex) => {
     console.log(req.body);
-    db.execute("UPDATE `g_online_details` SET `g_pending_status` = '2', `g_amount` = '"+req.body.amount+"' WHERE (`g_detail_id` = '"+req.body.g_detail_id+"');",
+    db.execute("UPDATE `g_online_details` SET `g_pending_status` = '2', `g_amount` = '" + req.body.amount + "' WHERE (`g_detail_id` = '" + req.body.g_detail_id + "');",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -104,7 +104,7 @@ exports.addamount = (req, res, nex) => {
 
 exports.savepaydetail = (req, res, nex) => {
     console.log(req.body);
-    db.execute("INSERT INTO `online_application_pay` ( `onlin_pay_app_cat`, `online_pay_application_id`, `online_pay_amount`, `online_pay_active_status`, `date`,`description`,`cus_id` ) VALUES ( '"+req.body.onlin_pay_app_cat+"', '"+req.body.online_pay_application_id+"', '"+req.body.online_pay_amount+"', '1', '2021-03-17','Gully Payment','"+req.body.cusid+"' );",
+    db.execute("INSERT INTO `online_application_pay` ( `onlin_pay_app_cat`, `online_pay_application_id`, `online_pay_amount`, `online_pay_active_status`, `date`,`description`,`cus_id` ) VALUES ( '" + req.body.onlin_pay_app_cat + "', '" + req.body.online_pay_application_id + "', '" + req.body.online_pay_amount + "', '1', '2021-03-17','Gully Payment','" + req.body.cusid + "' );",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -117,7 +117,7 @@ exports.savepaydetail = (req, res, nex) => {
 
 exports.getpaymentforcus = (req, res, nex) => {
     console.log(req.body);
-    db.execute("SELECT online_application_pay.onlin_pay_details, online_application_pay.description, online_application_pay.cus_id, online_application_pay.online_pay_amount FROM `online_application_pay` WHERE online_application_pay.online_pay_active_status = '1' AND online_application_pay.cus_id = '"+req.body.cus_id+"'",
+    db.execute("SELECT online_application_pay.onlin_pay_details, online_application_pay.description, online_application_pay.cus_id, online_application_pay.online_pay_amount FROM `online_application_pay` WHERE online_application_pay.online_pay_active_status = '1' AND online_application_pay.cus_id = '" + req.body.cus_id + "'",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -130,7 +130,7 @@ exports.getpaymentforcus = (req, res, nex) => {
 
 exports.getpayment_detail_by_id = (req, res, nex) => {
     console.log(req.body);
-    db.execute("SELECT online_application_pay.onlin_pay_details, online_application_pay.description, online_application_pay.cus_id, online_application_pay.online_pay_amount, online_application_pay.online_pay_application_id, online_application_pay.onlin_pay_app_cat, application_catagory.sh_name FROM online_application_pay INNER JOIN application_catagory ON online_application_pay.onlin_pay_app_cat = application_catagory.idApplication_Catagory WHERE online_application_pay.online_pay_active_status = '1' AND online_application_pay.cus_id = '"+req.body.cus_id+"' AND online_application_pay.onlin_pay_details = '"+req.body.payid+"'",
+    db.execute("SELECT online_application_pay.onlin_pay_details, online_application_pay.description, online_application_pay.cus_id, online_application_pay.online_pay_amount, online_application_pay.online_pay_application_id, online_application_pay.onlin_pay_app_cat, application_catagory.sh_name FROM online_application_pay INNER JOIN application_catagory ON online_application_pay.onlin_pay_app_cat = application_catagory.idApplication_Catagory WHERE online_application_pay.online_pay_active_status = '1' AND online_application_pay.cus_id = '" + req.body.cus_id + "' AND online_application_pay.onlin_pay_details = '" + req.body.payid + "'",
         (error, rows, fildData) => {
             if (!error) {
                 res.send(rows);
@@ -158,7 +158,7 @@ exports.pay = (req, res, nex) => {
     console.log('========');
     console.log(req.body);
     console.log('========');
-    const param = { cusid: req.body.cusid, appcat: req.body.appcat, app: req.body.app, amount: req.body.amount, des: req.body.des, o1: req.body.o1, o2: req.body.o2, total: req.body.fullPay, rate: req.body.onValue,catname:req.body.catname }
+    const param = { cusid: req.body.cusid, appcat: req.body.appcat, app: req.body.app, amount: req.body.amount, des: req.body.des, o1: req.body.o1, o2: req.body.o2, total: req.body.fullPay, rate: req.body.onValue, catname: req.body.catname }
     console.log(param);
     const datetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
     db.execute("INSERT INTO `online_pay`( `oncus_id`, `appcat_id`, `app_id`, `date`, `amount`, `status`, `description`, `other`, `other2`, `total`,`rate`) " +
@@ -181,24 +181,23 @@ exports.boc = (req, res, nex, param) => {
         console.log(param);
         console.log(process.env.resultRedirect);
         console.log(process.env.bota_code);
-        axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990103/session',
-        //axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/57/merchant/700193990103/session', 
-         {
-            "apiOperation": "CREATE_CHECKOUT_SESSION",
-            "interaction": {
-                "operation": "PURCHASE",
-                "returnUrl": process.env.resultRedirectOther
-            },
-            "order": {
-                "currency": "LKR",
-                "id": param.o1 + "_"+param.catname+"_"+ param.app,
-                "amount": param.total,
-                "description": "Gully service - " + param.app + " cus - " + param.cusid + " id - " + param.o1
-            }
-        }, {
+        // axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990103/session',
+        axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990120/session',
+            {
+                "apiOperation": "CREATE_CHECKOUT_SESSION",
+                "interaction": {
+                    "operation": "PURCHASE",
+                    "returnUrl": process.env.resultRedirectOther
+                },
+                "order": {
+                    "currency": "LKR",
+                    "id": param.o1 + "_" + param.catname + "_" + param.app,
+                    "amount": param.total,
+                    "description": "Gully service - " + param.app + " cus - " + param.cusid + " id - " + param.o1
+                }
+            }, {
             headers: {
-                 // 'Authorization': 'Basic ' + btoa('merchant.700193990103:57f24130a5b9175d29978ba30ef0ad44')
-                'Authorization': 'Basic ' + btoa('merchant.700193990103:80b0683907d9490a24436a592da22700')
+                'Authorization': 'Basic ' + btoa('merchant.700193990120:78ca2c89a16a257627054d549674e746')
             }
         }).then(boc => {
             console.log('-------------------------------');
@@ -248,9 +247,9 @@ exports.responce = (req, res, nex) => {
                                 text: 'Text message',
                             };
 
-                            var parmsam={
-                                to:data.mobile,
-                                mg:'payment sucsess...!!!',
+                            var parmsam = {
+                                to: data.mobile,
+                                mg: 'payment sucsess...!!!',
                             };
 
                             this.update_payment_status(data);
@@ -269,10 +268,10 @@ exports.responce = (req, res, nex) => {
 
 
 exports.update_payment_status = (data) => {
-    let datas=data;
-    console.log('app cat ',+datas.appcat_id);
-    console.log('app id ',+datas.app_id);
-    db.execute("UPDATE `online_application_pay` SET `online_pay_active_status` = '2' WHERE ( `onlin_pay_app_cat` = '"+datas.appcat_id+"' AND online_pay_application_id = '"+datas.app_id+"')",
+    let datas = data;
+    console.log('app cat ', +datas.appcat_id);
+    console.log('app id ', +datas.app_id);
+    db.execute("UPDATE `online_application_pay` SET `online_pay_active_status` = '2' WHERE ( `onlin_pay_app_cat` = '" + datas.appcat_id + "' AND online_pay_application_id = '" + datas.app_id + "')",
         (error, rows, fildData) => {
             if (!error) {
             } else {
@@ -283,8 +282,8 @@ exports.update_payment_status = (data) => {
 };
 
 exports.cusdata = (data) => {
-    let datas=data;
-    db.execute("SELECT online_cus.fullname FROM `online_cus` WHERE online_cus.idOnline = '"+req.body.cusid+"'",
+    let datas = data;
+    db.execute("SELECT online_cus.fullname FROM `online_cus` WHERE online_cus.idOnline = '" + req.body.cusid + "'",
         (error, rows, fildData) => {
             if (!error) {
             } else {

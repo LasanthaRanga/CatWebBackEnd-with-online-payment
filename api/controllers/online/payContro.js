@@ -43,11 +43,8 @@ exports.boc = (req, res, nex, param) => {
     try {
 
         console.log(param);
-        console.log(process.env.resultRedirect);
-        console.log(process.env.bota_code);
-        http://bankofceylon.gateway.mastercard.com/api/nvp/version/58
-        axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990103/session', {
-            // axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/57/merchant/700193990103/session', {
+
+        let oder = {
             "apiOperation": "CREATE_CHECKOUT_SESSION",
             "interaction": {
                 "operation": "PURCHASE",
@@ -57,12 +54,17 @@ exports.boc = (req, res, nex, param) => {
                 "currency": "LKR",
                 "id": param.o1 + "_AT_" + param.app,
                 "amount": param.total,
-                "description": "A.Tax " + param.app + " C " + param.cusid + " ID " + param.o1
-            }
-        }, {
+                "description": "A.Tax" + param.app + " C " + param.cusid + " ID " + param.o1,
+                "reference": "REFTEST1"
+            },
+        }
+        console.log("-----------------------");
+        console.log(oder);
+        console.log("-----------------------");
+        // axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990103/session', {
+        axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990120/session', oder, {
             headers: {
-                // 'Authorization': 'Basic ' + btoa('merchant.700193990103:57f24130a5b9175d29978ba30ef0ad44')
-                'Authorization': 'Basic ' + btoa('merchant.700193990103:80b0683907d9490a24436a592da22700')
+                'Authorization': 'Basic ' + btoa('merchant.700193990120:78ca2c89a16a257627054d549674e746')
             }
         }).then(boc => {
             console.log('-------------------------------');

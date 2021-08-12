@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../util/database');
-    var dateFormat = require('dateformat');
+var dateFormat = require('dateformat');
 var appRoot = require('app-root-path');
 
 //file upload
@@ -17,9 +17,9 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         let date = dateFormat(new Date(), 'yyyyMMddHHmmss_', 'en-US', '+0530');
-       // console.log(date + " ===================== ");
+        // console.log(date + " ===================== ");
         path = date + file.originalname;
-       // console.log(path + "  ++++++++++++++++++");
+        // console.log(path + "  ++++++++++++++++++");
         cb(null, path);
     }
 });
