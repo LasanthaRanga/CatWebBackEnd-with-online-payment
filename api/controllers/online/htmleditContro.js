@@ -541,7 +541,8 @@ exports.re8 =
     "                        </td>   " +
     "                      </tr>   " +
     "                    </table>   " +
-    "                    <p>If you have any questions about this receipt please feel free to contact us for further clarification if any  0768331689</p>   " +
+    "                    <p>If you have any questions about this receipt please feel free to contact us for further clarification if any";
+exports.re9 = " </p>   " +
     "                  </div>   " +
     "                </td>   " +
     "              </tr>   " +
@@ -554,8 +555,8 @@ exports.re8 =
     "              role=\"presentation\">   " +
     "              <tr>   " +
     "                <td class=\"content-cell\" align=\"center\">   " +
-    "                  <p class=\"f-fallback sub align-center\">   " +
-    "                     Chilaw Urban Council,   " +
+    "                  <p class=\"f-fallback sub align-center\">   ";
+exports.re10 +
     "                    <br>Sri Lanka   " +
     "                  </p>   " +
     "                  <p class=\"f-fallback sub align-center\">&copy; <a href=\"\">Cat20 System Wayamba Development Authority</a>. All rights reserved.</p>   " +

@@ -105,7 +105,9 @@ exports.responce = (req, res, nex) => {
                                 htmls.re5 + data.ward_name + " - " + data.street_name + " - " + data.assessment_no +
                                 htmls.re6 + "Rs. " + data.amount +
                                 htmls.re7 + "Rs. " + data.amount +
-                                htmls.re8;
+                                htmls.re8 + "07162188917" +
+                                htmls.re9 + process.env.SabaName +
+                                htmls.re10;
 
 
                             var param = {

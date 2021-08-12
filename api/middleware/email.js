@@ -67,9 +67,9 @@ exports.emailSend = (param) => {
 exports.mobitelSmsSend = (parm) => {
 
     let send = {
-        username: "esmsusr_1bjn",
-        password: "2845bli",
-        from: "CHILAWUC",
+        username: "esmsusr_bmj",
+        password: "1a4dkk8",
+        from: "Kuliya UC",
         to: parm.to,
         text: parm.mg,
         mesageType: 1
