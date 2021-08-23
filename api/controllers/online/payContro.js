@@ -61,10 +61,10 @@ exports.boc = (req, res, nex, param) => {
         console.log("-----------------------");
         console.log(oder);
         console.log("-----------------------");
-        // axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990103/session', {
-        axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990120/session', oder, {
+        axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990120/session', oder, {
+            // axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990120/session', oder, {
             headers: {
-                'Authorization': 'Basic ' + btoa('merchant.700193990120:78ca2c89a16a257627054d549674e746')
+                'Authorization': 'Basic ' + btoa('merchant.700193990120:0317669b6b6bbacb6b46f2a6d598aad0')
             }
         }).then(boc => {
             console.log('-------------------------------');

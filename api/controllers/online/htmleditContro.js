@@ -542,6 +542,7 @@ exports.re8 =
     "                      </tr>   " +
     "                    </table>   " +
     "                    <p>If you have any questions about this receipt please feel free to contact us for further clarification if any";
+    
 exports.re9 = " </p>   " +
     "                  </div>   " +
     "                </td>   " +
@@ -556,6 +557,7 @@ exports.re9 = " </p>   " +
     "              <tr>   " +
     "                <td class=\"content-cell\" align=\"center\">   " +
     "                  <p class=\"f-fallback sub align-center\">   ";
+
 exports.re10 =
     "                    <br>Sri Lanka   " +
     "                  </p>   " +
