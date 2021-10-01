@@ -29,8 +29,8 @@ const adminRoute = require('./api/routes/admin_panel/mixBillRouters');
 const streetRoute = require('./api/routes/online/street');
 const slcomRoute = require('./api/routes/online/slcomroute');
 const complain = require('./api/routes/online/complain');
-const gullyRoute=require('./api/routes/online/jully');
-const waterbowsersRoute=require('./api/routes/online/waterbowsers');
+const gullyRoute = require('./api/routes/online/jully');
+const waterbowsersRoute = require('./api/routes/online/waterbowsers');
 // Testing Comment
 
 
@@ -49,6 +49,8 @@ const allowedOrigins = [
     'https://kurunegalamc.cat2020.org',
     'http://kuliyapitiyauc.cat2020.org',
     'https://kuliyapitiyauc.cat2020.org',
+    'http://wennappuwa.cat2020.org',
+    'https://wennappuwa.cat2020.org',
     '*',
 ];
 
@@ -94,10 +96,10 @@ app.use(urlPrifix + 'onpay', onpay);
 app.use(urlPrifix + 'vehicle', vehicleRoute);
 app.use(urlPrifix + 'admin', adminRoute);
 app.use(urlPrifix + 'street', streetRoute);
-app.use(urlPrifix + 'slcom',slcomRoute );
-app.use(urlPrifix + 'complains',complain );
-app.use(urlPrifix + 'gully',gullyRoute);
-app.use(urlPrifix + 'waterbowser',waterbowsersRoute);
+app.use(urlPrifix + 'slcom', slcomRoute);
+app.use(urlPrifix + 'complains', complain);
+app.use(urlPrifix + 'gully', gullyRoute);
+app.use(urlPrifix + 'waterbowser', waterbowsersRoute);
 
 // app.use('/sms', (req, res, next) => {
 //   message.mobitelSmsSend({ to: '0702517628', mg: 'test parameeter' });
