@@ -181,23 +181,22 @@ exports.boc = (req, res, nex, param) => {
         console.log(param);
         console.log(process.env.resultRedirect);
         console.log(process.env.bota_code);
-        axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990120/session',
-        // axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990120/session',
-            {
-                "apiOperation": "CREATE_CHECKOUT_SESSION",
-                "interaction": {
-                    "operation": "PURCHASE",
-                    "returnUrl": process.env.resultRedirectOther
-                },
-                "order": {
-                    "currency": "LKR",
-                    "id": param.o1 + "_" + param.catname + "_" + param.app,
-                    "amount": param.total,
-                    "description": "Gully service - " + param.app + " cus - " + param.cusid + " id - " + param.o1
-                }
-            }, {
+        // axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990133/session',
+        axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990133/session', {
+            "apiOperation": "CREATE_CHECKOUT_SESSION",
+            "interaction": {
+                "operation": "PURCHASE",
+                "returnUrl": process.env.resultRedirectOther
+            },
+            "order": {
+                "currency": "LKR",
+                "id": param.o1 + "_" + param.catname + "_" + param.app,
+                "amount": param.total,
+                "description": "Gully service - " + param.app + " cus - " + param.cusid + " id - " + param.o1
+            }
+        }, {
             headers: {
-                'Authorization': 'Basic ' + btoa('merchant.700193990120:0317669b6b6bbacb6b46f2a6d598aad0')
+                'Authorization': 'Basic ' + btoa('merchant.700193990133:436ec97d1f0d5d863645368b7c7cf137')
             }
         }).then(boc => {
             console.log('-------------------------------');
@@ -273,8 +272,7 @@ exports.update_payment_status = (data) => {
     console.log('app id ', +datas.app_id);
     db.execute("UPDATE `online_application_pay` SET `online_pay_active_status` = '2' WHERE ( `onlin_pay_app_cat` = '" + datas.appcat_id + "' AND online_pay_application_id = '" + datas.app_id + "')",
         (error, rows, fildData) => {
-            if (!error) {
-            } else {
+            if (!error) {} else {
                 console.log("error message");
                 console.log(error.message);
             }
@@ -285,15 +283,9 @@ exports.cusdata = (data) => {
     let datas = data;
     db.execute("SELECT online_cus.fullname FROM `online_cus` WHERE online_cus.idOnline = '" + req.body.cusid + "'",
         (error, rows, fildData) => {
-            if (!error) {
-            } else {
+            if (!error) {} else {
                 console.log("error message");
                 console.log(error.message);
             }
         });
 };
-
-
-
-
-

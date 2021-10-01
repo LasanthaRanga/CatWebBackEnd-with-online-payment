@@ -54,17 +54,16 @@ exports.boc = (req, res, nex, param) => {
                 "currency": "LKR",
                 "id": param.o1 + "_AT_" + param.app,
                 "amount": param.total,
-                "description": "A.Tax" + param.app + " C " + param.cusid + " ID " + param.o1,
-                "reference": "REFTEST1"
+                "description": "A.Tax" + param.app + " C " + param.cusid + " ID " + param.o1
             },
         }
         console.log("-----------------------");
         console.log(oder);
         console.log("-----------------------");
-        axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990120/session', oder, {
-            // axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990120/session', oder, {
+        // axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990133/session', oder, {
+        axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990133/session', oder, {
             headers: {
-                'Authorization': 'Basic ' + btoa('merchant.700193990120:0317669b6b6bbacb6b46f2a6d598aad0')
+                'Authorization': 'Basic ' + btoa('merchant.700193990133:436ec97d1f0d5d863645368b7c7cf137')
             }
         }).then(boc => {
             console.log('-------------------------------');
@@ -130,4 +129,3 @@ exports.responce = (req, res, nex) => {
             }
         });
 };
-

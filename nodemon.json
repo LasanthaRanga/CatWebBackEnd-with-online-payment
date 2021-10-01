@@ -1,15 +1,15 @@
 {
     "env": {
         "JWT_KEY": "secret",
-        "host": "localhost",
+        "host": "220.247.237.52",
+        "password": "WEN@#321#",
+        "database": "ultimate_test",
         "user": "root",
-        "password": "root",
-        "database": "ultimate2",
         "sendby": "webportal@cat2020.org",
         "sendbypass": "webportal@2020",
-        "SabaName": "CHILAW URBAN COUNCIL",
+        "SabaName": "Wennappuwa Pradeshiaya Sabawa",
         "rootPath": "https://chilawuc.cat2020.org",
         "resultRedirect": "http://localhost:81/result/",
-        "resultRedirectOther": "http://localhost:81/result/other.html/"   
+        "resultRedirectOther": "http://localhost:81/result/other.html/"
     }
 }

@@ -45,8 +45,8 @@ exports.emailSend = (param) => {
 
         // console.log(param);
         transporter.sendMail(
-            mailOptions
-            , function (error, info) {
+            mailOptions,
+            function(error, info) {
                 if (error) {
                     console.log(error);
                 } else {
@@ -67,9 +67,9 @@ exports.emailSend = (param) => {
 exports.mobitelSmsSend = (parm) => {
 
     let send = {
-        username: "esmsusr_bmj",
-        password: "1a4dkk8",
-        from: "Kuliya UC",
+        username: "esmsusr_kf2",
+        password: "3ipd7ai",
+        from: "WENPC",
         to: parm.to,
         text: parm.mg,
         mesageType: 1
@@ -78,7 +78,7 @@ exports.mobitelSmsSend = (parm) => {
     axios.post('http://smeapps.mobitel.lk:8585/EnterpriseSMSV3/esmsproxyURL.php', send)
         .then(res => {
             console.log(`statusCode: ${res[0]}`)
-            // console.log(res)  
+                // console.log(res)  
         })
         .catch(error => {
             console.error(error)
@@ -108,17 +108,15 @@ exports.smsSend = (param) => {
             let mobile = param.mob;
 
 
-            http.get("" + link + "id=" + id + "&password=" + pword + "&text=" + message + "&to=" + mobile + "&from=MC.Kurunegala"
-                , function (err, res, body) {
-                    if (err) {
-                        console.log("eroor on");
-                        console.log(err);
-                    } else {
-                        console.log("Else");
-                        console.log(res);
-                    }
+            http.get("" + link + "id=" + id + "&password=" + pword + "&text=" + message + "&to=" + mobile + "&from=MC.Kurunegala", function(err, res, body) {
+                if (err) {
+                    console.log("eroor on");
+                    console.log(err);
+                } else {
+                    console.log("Else");
+                    console.log(res);
                 }
-            );
+            });
 
         }
     });
