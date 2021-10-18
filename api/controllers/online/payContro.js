@@ -56,6 +56,16 @@ exports.boc = (req, res, nex, param) => {
                 "amount": param.total,
                 "description": "A.Tax" + param.app + " C " + param.cusid + " ID " + param.o1
             },
+            "billing": {
+                "address": {
+                    "city": "Wennappuwa",
+                    "postcodeZip": "61170",
+                    "stateProvince": "North West",
+                    "country": "LKA",
+                    "street": "A.T.No. " + param.app,
+                    "street2": "Wennappuwa"
+                }
+            }
         }
         console.log("-----------------------");
         console.log(oder);
