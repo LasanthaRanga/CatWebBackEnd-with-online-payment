@@ -70,10 +70,10 @@ exports.boc = (req, res, nex, param) => {
         console.log("-----------------------");
         console.log(oder);
         console.log("-----------------------");
-        // axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990133/session', oder, {
-        axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990133/session', oder, {
+        axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990133/session', oder, {
+            // axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990133/session', oder, {
             headers: {
-                'Authorization': 'Basic ' + btoa('merchant.700193990133:436ec97d1f0d5d863645368b7c7cf137')
+                'Authorization': 'Basic ' + btoa('merchant.700193990133:af2ba7a8dd849c7677bc5ebd9b602b00')
             }
         }).then(boc => {
             console.log('-------------------------------');
@@ -114,7 +114,7 @@ exports.responce = (req, res, nex) => {
                                 htmls.re5 + data.ward_name + " - " + data.street_name + " - " + data.assessment_no +
                                 htmls.re6 + "Rs. " + data.amount +
                                 htmls.re7 + "Rs. " + data.amount +
-                                htmls.re8 + "  07162188917" +
+                                htmls.re8 + "  " + process.env.contact +
                                 htmls.re9 + process.env.SabaName +
                                 htmls.re10;
 

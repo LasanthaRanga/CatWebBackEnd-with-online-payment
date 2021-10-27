@@ -8,6 +8,7 @@
         "sendby": "webportal@cat2020.org",
         "sendbypass": "webportal@2020",
         "SabaName": "Wennappuwa Pradeshiaya Sabawa",
+        "contact": "0778281938",
         "rootPath": "https://chilawuc.cat2020.org",
         "resultRedirect": "http://localhost:81/result/",
         "resultRedirectOther": "http://localhost:81/result/other.html/"
