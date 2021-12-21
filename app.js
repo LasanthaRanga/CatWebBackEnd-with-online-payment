@@ -51,6 +51,8 @@ const allowedOrigins = [
     'https://kuliyapitiyauc.cat2020.org',
     'http://wennappuwa.cat2020.org',
     'https://wennappuwa.cat2020.org',
+    'http://ibbagamuwaps.cat2020.org',
+    'https://ibbagamuwaps.cat2020.org',
     '*',
 ];
 
