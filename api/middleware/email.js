@@ -10,7 +10,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var transporter = nodemailer.createTransport({
     host: 'mail.cat2020.org',
-    port: 456,
+    port: 465,
     secure: true, // use SSL
     auth: {
         user: 'webportal@cat2020.org',
@@ -67,9 +67,9 @@ exports.emailSend = (param) => {
 exports.mobitelSmsSend = (parm) => {
 
     let send = {
-        username: "esmsusr_1d89",
-        password: "Gn&!s56Ln",
-        from: "IBCATONLINE",
+        username: "esmsusr_11v8",
+        password: "qd5079",
+        from: "NARAMMALAPS",
         to: parm.to,
         text: parm.mg,
         mesageType: 1

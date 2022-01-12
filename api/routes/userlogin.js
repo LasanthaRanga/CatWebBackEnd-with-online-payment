@@ -165,7 +165,7 @@ router.post('/jwt/', (req, res, nex) => {
                 });
             } else {
                 console.log("error message");
-                console.log(error.message);
+                console.log(error);
             }
         });
 });

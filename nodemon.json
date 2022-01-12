@@ -1,9 +1,9 @@
 {
     "env": {
         "JWT_KEY": "secret",
-        "host": "124.43.5.82",
-        "password": "IBB@#$321$%",
-        "database": "online_test",
+        "host": "124.43.11.162",
+        "password": "3ta@kela#una@",
+        "database": "narammala_online",
         "user": "root",
         "sendby": "webportal@cat2020.org",
         "sendbypass": "webportal@2020",

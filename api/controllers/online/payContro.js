@@ -58,12 +58,12 @@ exports.boc = (req, res, nex, param) => {
             },
             "billing": {
                 "address": {
-                    "city": "Ibbagamuwa",
-                    "postcodeZip": "60500",
+                    "city": "Narammala",
+                    "postcodeZip": "60100",
                     "stateProvince": "North West",
                     "country": "LKA",
                     "street": "A.T.No. " + param.app,
-                    "street2": "Ibbagamuwa"
+                    "street2": "Narammala"
                 }
             }
         }
@@ -71,9 +71,9 @@ exports.boc = (req, res, nex, param) => {
         console.log(oder);
         console.log("-----------------------");
         // axios.post('https://bankofceylon.gateway.mastercard.com/api/rest/version/58/merchant/700193990133/session', oder, {
-            axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990143/session', oder, {
+            axios.post('https://test-bankofceylon.mtf.gateway.mastercard.com/api/rest/version/61/merchant/700193990144/session', oder, {
             headers: {
-                'Authorization': 'Basic ' + btoa('merchant.700193990143:08b94b0b4bd3d84adfe91cbbdaa24bf9')
+                'Authorization': 'Basic ' + btoa('merchant.700193990144:ac6e565a0da901906e6b0070513ca346')
             }
         }).then(boc => {
             console.log('-------------------------------');
