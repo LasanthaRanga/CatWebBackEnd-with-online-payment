@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 // const sequelize = new Sequelize('ultimate2', 'root', 'KULIUC@#321#', {  //MCK
 const sequelize = new Sequelize(process.env.database, process.env.user, process.env.password, {
 
-    port: 3307,
+    port: 3306,
     host: process.env.host,
     dialect: 'mysql',
     define: {
