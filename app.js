@@ -33,54 +33,49 @@ const gullyRoute = require('./api/routes/online/jully');
 const waterbowsersRoute = require('./api/routes/online/waterbowsers');
 // Testing Comment
 
-
 const allowedOrigins = [
-    'capacitor://localhost',
-    'ionic://localhost',
-    'http://localhost',
-    'http://localhost:4200',
-    'http://127.0.0.1:4200',
-    'http://192.168.8.103:4200',
-    'http://localhost:8080',
-    'http://localhost:8100',
-    'http://localhost:81',
-    'http://chilawuc.cat2020.org',
-    'https://chilawuc.cat2020.org',
-    'http://kurunegalamc.cat2020.org',
-    'https://kurunegalamc.cat2020.org',
-    'http://kuliyapitiyauc.cat2020.org',
-    'https://kuliyapitiyauc.cat2020.org',
-    'http://wennappuwa.cat2020.org',
-    'https://wennappuwa.cat2020.org',
-    'http://ibbagamuwaps.cat2020.org',
-    'https://ibbagamuwaps.cat2020.org',
-    '*',
+  'capacitor://localhost',
+  'ionic://localhost',
+  'http://localhost',
+  'http://localhost:4200',
+  'http://127.0.0.1:4200',
+  'http://192.168.8.103:4200',
+  'http://localhost:8080',
+  'http://localhost:8100',
+  'http://localhost:81',
+  'http://chilawuc.cat2020.org',
+  'https://chilawuc.cat2020.org',
+  'http://kurunegalamc.cat2020.org',
+  'https://kurunegalamc.cat2020.org',
+  'http://kuliyapitiyauc.cat2020.org',
+  'https://kuliyapitiyauc.cat2020.org',
+  'http://wennappuwa.cat2020.org',
+  'https://wennappuwa.cat2020.org',
+  'http://ibbagamuwaps.cat2020.org',
+  'https://ibbagamuwaps.cat2020.org',
+  '*',
 ];
 
 // Reflect the origin if it's in the allowed list or not defined (cURL, Postman, etc.)
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Origin not allowed by CORS'));
-        }
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origin not allowed by CORS'));
     }
-}
+  },
+};
 
 // Enable preflight requests for all routes
 app.options('*', cors(corsOptions));
-
-
 
 app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 const urlPrifix = '/online/';
-
 
 app.use(urlPrifix + 'userlogin', userlogin);
 app.use(urlPrifix + 'privilage', privilage);
@@ -89,7 +84,7 @@ app.use(urlPrifix + 'subjects', subjects);
 app.use(urlPrifix + 'department', department);
 app.use(urlPrifix + 'jobs', jobs);
 app.use(urlPrifix + 'sendto', sendto);
-app.use(urlPrifix + 'attach', attach)
+app.use(urlPrifix + 'attach', attach);
 app.use(urlPrifix + 'unique', unique);
 app.use(urlPrifix + 'onlinecustomer', onlinecustomer);
 app.use(urlPrifix + 'onlinecuspro', onlinecuspro);
@@ -109,23 +104,20 @@ app.use(urlPrifix + 'waterbowser', waterbowsersRoute);
 //   res.send({ ok: 'ok' });
 // });
 
-
-
-
 app.use((req, res, next) => {
-    const error = new Error('Not Found ela kiri');
-    error.status = 404;
-    console.log(error.message);
-    next(error);
+  const error = new Error('Not Found ela kiri');
+  error.status = 404;
+  console.log(error.message);
+  next(error);
 });
 
 app.use((error, req, res, next) => {
-    res.status(error.status || 500);
-    res.json({
-        error: {
-            message: error.message
-        }
-    })
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message,
+    },
+  });
 });
 
 module.exports = app;
