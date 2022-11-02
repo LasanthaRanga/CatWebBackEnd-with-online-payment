@@ -1,8 +1,8 @@
 {
     "env": {
         "JWT_KEY": "secret",
-        "host": "124.43.5.82",
-        "password": "IBB@#$321$%",
+        "host": "124.43.4.231",
+        "password": "NATH@#$321$%",
         "database": "online_test",
         "user": "root",
         "sendby": "webportal@cat2020.org",
